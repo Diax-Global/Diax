@@ -1,0 +1,5 @@
+.flooignore
+.floo
+*.iml
+.idea/
+*.properties
