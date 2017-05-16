@@ -21,21 +21,25 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
 import com.knockturnmc.api.util.ConfigurationUtils;
+import com.mashape.unirest.http.Unirest;
+import me.diax.comportment.commands.administator.Ban;
+import me.diax.comportment.commands.administator.Kick;
 import me.diax.comportment.commands.miscellaneous.Crystal;
 import me.diax.comportment.commands.miscellaneous.Echo;
 import me.diax.comportment.commands.statistical.Help;
 import me.diax.comportment.commands.statistical.Ping;
 import me.diax.comportment.commands.statistical.Statistics;
 import me.diax.comportment.commands.statistical.WhoAmI;
-import me.diax.comportment.util.ShardUtil;
-import me.diax.jdacommand.CommandHandler;
+import me.diax.comportment.jdacommand.CommandHandler;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.OnlineStatus;
 import net.dv8tion.jda.core.entities.Game;
+import net.dv8tion.jda.core.entities.TextChannel;
 
 import java.io.File;
+import java.util.Arrays;
 
 /**
  * Created by Comportment at 16:55 on 15/05/17
@@ -55,12 +59,19 @@ public class Main implements ComponentProvider, Module {
         properties = ConfigurationUtils.loadConfiguration(this.getClass().getClassLoader(), "diax.properties", new File(System.getProperty("user.dir")), DiaxProperties.class);
         injector = Guice.createInjector(this);
         handler.registerCommands(
+                //Admin
+                new Ban(),
+                new Kick(),
+
+                //Misc
+                new Crystal(),
                 new Echo(),
+
+                //Stats
                 getInstance(Help.class),
-                new WhoAmI(),
                 new Ping(),
                 new Statistics(),
-                new Crystal()
+                new WhoAmI()
         );
     }
 
@@ -70,7 +81,7 @@ public class Main implements ComponentProvider, Module {
 
     private void main() {
         String token = properties.getToken();
-        int amount = ShardUtil.getRecommendedShards(token);
+        int amount = Main.getRecommendedShards(token);
         shards = new JDA[amount >= 3 ? amount : 1];
         for (int i = 0; i < shards.length; i++) {
             JDA jda = null;
@@ -94,10 +105,6 @@ public class Main implements ComponentProvider, Module {
         }
     }
 
-    public static JDA[] getShards() {
-        return shards;
-    }
-
     @Override
     public void configure(Binder binder) {
         binder.bind(DiaxProperties.class).toProvider(() -> properties);
@@ -107,5 +114,48 @@ public class Main implements ComponentProvider, Module {
     @Override
     public <T> T getInstance(Class<T> type) {
         return injector.getInstance(type);
+    }
+
+    public static JDA[] getShards() {
+        return shards;
+    }
+
+    public static TextChannel retreiveTextChannel(long id) {
+        return Arrays.stream(shards).flatMap(jda -> jda.getTextChannels().stream()).findFirst().orElse(null);
+    }
+
+    public static long getUserCount() {
+        return Arrays.stream(shards).mapToLong(jda -> jda.getUsers().size()).sum();
+    }
+
+    public static long getTotalChannels() {
+        return getVoiceChannels() + getTextChannels() + getPrivateChannels();
+    }
+
+    public static long getVoiceChannels() {
+        return Arrays.stream(shards).mapToLong(jda -> jda.getVoiceChannels().size()).sum();
+    }
+
+    public static long getTextChannels() {
+        return Arrays.stream(shards).mapToLong(jda -> jda.getTextChannels().size()).sum();
+    }
+
+    public static long getPrivateChannels() {
+        return Arrays.stream(shards).mapToLong(jda -> jda.getPrivateChannels().size()).sum();
+    }
+
+    public static long getGuilds() {
+        return Arrays.stream(shards).mapToLong(jda -> jda.getGuilds().size()).sum();
+    }
+
+    public static int getRecommendedShards(String token) {
+        try {
+            return Unirest.get("https://discordapp.com/api/gateway/bot")
+                    .header("Authorization", "Bot " + token)
+                    .header("Content-Type", "application/json")
+                    .asJson().getBody().getObject().getInt("shards");
+        } catch (Exception ignored) {
+            return 1;
+        }
     }
 }

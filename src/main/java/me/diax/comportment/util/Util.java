@@ -30,7 +30,7 @@ import net.dv8tion.jda.core.utils.PermissionUtil;
 public class Util {
 
     public static boolean checkPermission(Guild guild, User user, Permission permission) {
-        return PermissionUtil.checkPermission(guild, guild.getMember(user), permission) || user.getIdLong() == getOwnerLong();
+        return PermissionUtil.checkPermission(guild.getMember(user), permission) || user.getIdLong() == getOwnerLong();
     }
 
     public static long getOwnerLong() {

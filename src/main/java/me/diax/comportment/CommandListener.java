@@ -16,8 +16,8 @@
 
 package me.diax.comportment;
 
-import me.diax.jdacommand.Command;
-import me.diax.jdacommand.CommandHandler;
+import me.diax.comportment.jdacommand.Command;
+import me.diax.comportment.jdacommand.CommandHandler;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;

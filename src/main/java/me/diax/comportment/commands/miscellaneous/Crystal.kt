@@ -16,27 +16,24 @@
 
 package me.diax.comportment.commands.miscellaneous;
 
-import me.diax.jdacommand.Command;
-import me.diax.jdacommand.CommandAttribute;
-import me.diax.jdacommand.CommandDescription;
-import net.dv8tion.jda.core.entities.Message;
+import me.diax.comportment.jdacommand.Command
+import me.diax.comportment.jdacommand.CommandAttribute
+import me.diax.comportment.jdacommand.CommandDescription
+import net.dv8tion.jda.core.entities.Message
 
 /**
- * Created by Comportment at 00:46 on 16/05/17
+ * Created by Comportment at 18:29 on 16/05/17
  * https://github.com/Comportment | comportment@diax.me
  *
  * @author Comportment
  */
-@CommandDescription(name = "crystal", triggers = {
-        "crystal", "wat", "crystalmare"
-}, attributes = {
-        @CommandAttribute(key = "hideFromHelp"),
-        @CommandAttribute(key = "allowPrivate")
-})
-public class Crystal implements Command {
+@CommandDescription(name = "crystal", triggers = arrayOf("crystal", "wat"), attributes = arrayOf(
+        CommandAttribute(key = "hideFromHelp"),
+        CommandAttribute(key = "allowPrivate")
+))
+class Crystal : Command {
 
-    @Override
-    public void execute(Message trigger, String args) {
-        trigger.getChannel().sendMessage("wat").queue();
+    override fun execute(message: Message, string: String) {
+        message.channel.sendMessage("wat").queue()
     }
 }

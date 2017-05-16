@@ -16,11 +16,11 @@
 
 package me.diax.comportment.commands.statistical;
 
+import me.diax.comportment.jdacommand.Command;
+import me.diax.comportment.jdacommand.CommandAttribute;
+import me.diax.comportment.jdacommand.CommandDescription;
+import me.diax.comportment.jdacommand.CommandHandler;
 import me.diax.comportment.util.MessageUtil;
-import me.diax.jdacommand.Command;
-import me.diax.jdacommand.CommandAttribute;
-import me.diax.jdacommand.CommandDescription;
-import me.diax.jdacommand.CommandHandler;
 import net.dv8tion.jda.core.entities.Message;
 
 import javax.inject.Inject;

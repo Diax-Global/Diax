@@ -41,6 +41,10 @@ public class MessageUtil {
         return defaultEmbed().setDescription(error).setColor(Color.RED).build();
     }
 
+    public static MessageEmbed permissionError() {
+        return errorEmbed("You do not have enough permission to do that.");
+    }
+
     public static MessageEmbed basicEmbed(String message) {
         return defaultEmbed().setDescription(message).build();
     }
