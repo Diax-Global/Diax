@@ -25,6 +25,7 @@ import com.mashape.unirest.http.Unirest;
 import me.diax.comportment.commands.administator.Ban;
 import me.diax.comportment.commands.administator.Kick;
 import me.diax.comportment.commands.administator.Purge;
+import me.diax.comportment.commands.administator.VoiceKick;
 import me.diax.comportment.commands.miscellaneous.Crystal;
 import me.diax.comportment.commands.miscellaneous.Echo;
 import me.diax.comportment.commands.statistical.Help;
@@ -66,6 +67,7 @@ public class Main implements ComponentProvider, Module {
                 new Ban(),
                 new Kick(),
                 new Purge(),
+                new VoiceKick(),
 
                 //Misc
                 new Crystal(),

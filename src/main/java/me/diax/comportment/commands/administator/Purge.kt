@@ -21,7 +21,10 @@ import me.diax.comportment.jdacommand.CommandAttribute
 import me.diax.comportment.jdacommand.CommandDescription
 import me.diax.comportment.scheduler.DiaxScheduler
 import me.diax.comportment.util.MessageUtil
+import me.diax.comportment.util.Util
+import net.dv8tion.jda.core.Permission
 import net.dv8tion.jda.core.entities.Message
+import net.dv8tion.jda.core.exceptions.PermissionException
 
 /**
  * Created by Comportment at 00:03 on 17/05/17
@@ -33,18 +36,26 @@ import net.dv8tion.jda.core.entities.Message
 class Purge : Command {
 
     override fun execute(message: Message, string: String) {
-        var amount : Int = string.split("\\s+".toRegex())[0].toInt()
+        if (!Util.checkPermission(message.guild, message.author, Permission.MESSAGE_MANAGE)) {
+            message.channel.sendMessage(MessageUtil.permissionError()).queue()
+            return
+        }
+        var amount: Int = string.split("\\s+".toRegex())[0].toInt()
         if (amount > 100) amount = 100
         if (amount < 0) amount = 2
         val channel = message.textChannel
         message.channel.history.retrievePast(amount).queue { history ->
-            val msg = history.filterNot { it.isPinned}
-            channel.deleteMessages(msg).queue { _ ->
-                message.channel.sendMessage(MessageUtil.basicEmbed("${msg.size} messages have been deleted.\nThis message will be deleted after 10 seconds.")).queue { delete ->
-                    DiaxScheduler.delayTask({
-                        delete.delete().queue()
-                    }, 10000L)
+            val msg = history.filterNot { it.isPinned }
+            try {
+                channel.deleteMessages(msg).queue { _ ->
+                    message.channel.sendMessage(MessageUtil.basicEmbed("${msg.size} messages have been deleted.\nThis message will be deleted after 10 seconds.")).queue { delete ->
+                        DiaxScheduler.delayTask({
+                            delete.delete().queue()
+                        }, 10000L)
+                    }
                 }
+            } catch (exception: PermissionException) {
+                message.channel.sendMessage(MessageUtil.basicEmbed("Could not purge: #${channel.name} do I have enough permission?"))
             }
         }
     }
