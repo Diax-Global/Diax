@@ -41,7 +41,7 @@ class Ban : Command {
         }
         message.mentionedUsers.forEach { user ->
             try {
-                message.guild.controller.ban(user, 7).queue { success -> message.channel.sendMessage(MessageUtil.basicEmbed(user.name + "#" + user.discriminator + " has been banned.")).queue() }
+                message.guild.controller.ban(user, 7).queue { _ -> message.channel.sendMessage(MessageUtil.basicEmbed(user.name + "#" + user.discriminator + " has been banned.")).queue() }
             } catch (e: PermissionException) {
                 message.channel.sendMessage(MessageUtil.errorEmbed("I don't have enough permission to ban: " + user.name + "#" + user.discriminator)).queue()
             }

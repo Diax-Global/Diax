@@ -24,6 +24,7 @@ import com.knockturnmc.api.util.ConfigurationUtils;
 import com.mashape.unirest.http.Unirest;
 import me.diax.comportment.commands.administator.Ban;
 import me.diax.comportment.commands.administator.Kick;
+import me.diax.comportment.commands.administator.Purge;
 import me.diax.comportment.commands.miscellaneous.Crystal;
 import me.diax.comportment.commands.miscellaneous.Echo;
 import me.diax.comportment.commands.statistical.Help;
@@ -31,6 +32,8 @@ import me.diax.comportment.commands.statistical.Ping;
 import me.diax.comportment.commands.statistical.Statistics;
 import me.diax.comportment.commands.statistical.WhoAmI;
 import me.diax.comportment.jdacommand.CommandHandler;
+import me.diax.comportment.scheduler.DiaxScheduler;
+import me.diax.comportment.scheduler.DiaxTask;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -62,6 +65,7 @@ public class Main implements ComponentProvider, Module {
                 //Admin
                 new Ban(),
                 new Kick(),
+                new Purge(),
 
                 //Misc
                 new Crystal(),
