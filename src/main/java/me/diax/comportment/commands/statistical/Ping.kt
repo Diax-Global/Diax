@@ -35,7 +35,7 @@ class Ping : Command {
     override fun execute(message: Message, s: String) {
         message.channel.sendMessage(MessageUtil.basicEmbed("Pinging...")).queue { pinging ->
             val ping = message.creationTime.until(pinging.creationTime, ChronoUnit.MILLIS)
-            pinging.editMessage(MessageUtil.basicEmbed("Ping: ${ping}ms")).queue()
+            pinging.editMessage(MessageUtil.basicEmbed("⏱ Response: ${ping}ms\n❤ Websocket ${message.jda.ping}ms")).queue()
         }
     }
 }
