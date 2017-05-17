@@ -17,6 +17,8 @@
 package me.diax.comportment.commands.administator;
 
 import me.diax.comportment.jdacommand.Command
+import me.diax.comportment.jdacommand.CommandAttribute
+import me.diax.comportment.jdacommand.CommandDescription
 import me.diax.comportment.util.MessageUtil
 import me.diax.comportment.util.Util
 import net.dv8tion.jda.core.Permission
@@ -30,6 +32,7 @@ import net.dv8tion.jda.core.entities.VoiceChannel
  *
  * @author Comportment
  */
+@CommandDescription(name = "voicekick", triggers = arrayOf("voicekick", "vkick"), attributes = arrayOf(CommandAttribute(key = "description", value = "Kicks the mentioned users from a voice channel.")))
 class VoiceKick : Command {
 
     override fun execute(message: Message, args: String) {
