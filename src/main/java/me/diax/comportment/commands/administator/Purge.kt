@@ -17,6 +17,8 @@
 package me.diax.comportment.commands.administator;
 
 import me.diax.comportment.jdacommand.Command
+import me.diax.comportment.jdacommand.CommandAttribute
+import me.diax.comportment.jdacommand.CommandDescription
 import me.diax.comportment.scheduler.DiaxScheduler
 import me.diax.comportment.util.MessageUtil
 import net.dv8tion.jda.core.entities.Message
@@ -28,10 +30,11 @@ import java.util.stream.Collectors
  *
  * @author Comportment
  */
+@CommandDescription(name = "purge", triggers = arrayOf("purge", "clear", "clean"), attributes = arrayOf(CommandAttribute(key = "description", value = "Purges up to 100 messages at a time from the chat.")), args = 1)
 class Purge : Command {
 
     override fun execute(message: Message, string: String) {
-        var amount = string.split("\\s+".toRegex())[0].toInt()
+        var amount : Int = string.split("\\s+".toRegex())[0].toInt()
         if (amount > 100) amount = 100
         if (amount < 0) amount = 2
         val channel = message.textChannel
