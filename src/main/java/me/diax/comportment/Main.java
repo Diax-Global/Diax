@@ -22,10 +22,7 @@ import com.google.inject.Injector;
 import com.google.inject.Module;
 import com.knockturnmc.api.util.ConfigurationUtils;
 import com.mashape.unirest.http.Unirest;
-import me.diax.comportment.commands.administator.Ban;
-import me.diax.comportment.commands.administator.Kick;
-import me.diax.comportment.commands.administator.Purge;
-import me.diax.comportment.commands.administator.VoiceKick;
+import me.diax.comportment.commands.administator.*;
 import me.diax.comportment.commands.miscellaneous.Crystal;
 import me.diax.comportment.commands.miscellaneous.Echo;
 import me.diax.comportment.commands.statistical.Help;
@@ -67,6 +64,8 @@ public class Main implements ComponentProvider, Module {
                 new Ban(),
                 new Kick(),
                 new Purge(),
+                new SoftBan(),
+                new Unban(),
                 new VoiceKick(),
 
                 //Misc
