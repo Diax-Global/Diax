@@ -22,7 +22,6 @@ import me.diax.comportment.jdacommand.CommandDescription
 import me.diax.comportment.scheduler.DiaxScheduler
 import me.diax.comportment.util.MessageUtil
 import net.dv8tion.jda.core.entities.Message
-import java.util.stream.Collectors
 
 /**
  * Created by Comportment at 00:03 on 17/05/17
@@ -39,7 +38,7 @@ class Purge : Command {
         if (amount < 0) amount = 2
         val channel = message.textChannel
         message.channel.history.retrievePast(amount).queue { history ->
-            val msg = history.stream().filter { cd -> !cd.isPinned}.collect(Collectors.toList())
+            val msg = history.filterNot { it.isPinned}
             channel.deleteMessages(msg).queue { _ ->
                 message.channel.sendMessage(MessageUtil.basicEmbed("${msg.size} messages have been deleted.\nThis message will be deleted after 10 seconds.")).queue { delete ->
                     DiaxScheduler.delayTask({
