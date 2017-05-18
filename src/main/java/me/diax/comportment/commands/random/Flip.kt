@@ -33,6 +33,6 @@ import java.security.SecureRandom
 class Flip : Command {
 
     override fun execute(message: Message, args: String) {
-        message.channel.sendMessage(MessageUtil.basicEmbed("\uD83D\uDD18 You flipped a [${if ((SecureRandom().nextInt(2) + 1) == 2) "tails" else "heads"}]")).queue()
+        message.channel.sendMessage(MessageUtil.basicEmbed("\uD83D\uDD18 You flipped a ${if ((SecureRandom().nextInt(2) + 1) == 2) "tails" else "heads"}.")).queue()
     }
 }

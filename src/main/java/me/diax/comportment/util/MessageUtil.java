@@ -42,7 +42,7 @@ public class MessageUtil {
     }
 
     public static MessageEmbed permissionError() {
-        return errorEmbed("You do not have enough permission to do that.");
+        return errorEmbed("❌ You do not have enough permission to do that!");
     }
 
     public static MessageEmbed basicEmbed(String message) {

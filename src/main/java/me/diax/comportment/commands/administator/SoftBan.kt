@@ -20,6 +20,8 @@ import me.diax.comportment.jdacommand.Command
 import me.diax.comportment.jdacommand.CommandAttribute
 import me.diax.comportment.jdacommand.CommandDescription
 import me.diax.comportment.util.MessageUtil
+import me.diax.comportment.util.Util
+import net.dv8tion.jda.core.Permission
 import net.dv8tion.jda.core.entities.Message
 import net.dv8tion.jda.core.exceptions.PermissionException
 
@@ -33,6 +35,10 @@ import net.dv8tion.jda.core.exceptions.PermissionException
 class SoftBan : Command {
 
     override fun execute(message: Message, args: String) {
+        if (!Util.checkPermission(message.guild, message.author, Permission.KICK_MEMBERS)) {
+            message.channel.sendMessage(MessageUtil.permissionError()).queue()
+            return
+        }
         message.mentionedUsers.map { user ->
             val channel = message.channel
             val controller = message.guild.controller
