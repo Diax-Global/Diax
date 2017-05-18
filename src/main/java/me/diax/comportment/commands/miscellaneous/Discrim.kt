@@ -14,26 +14,30 @@
  * limitations under the License.
  */
 
-package me.diax.comportment.commands.statistical
+package me.diax.comportment.commands.miscellaneous;
 
+import me.diax.comportment.Main
 import me.diax.comportment.jdacommand.Command
 import me.diax.comportment.jdacommand.CommandAttribute
 import me.diax.comportment.jdacommand.CommandDescription
 import me.diax.comportment.util.MessageUtil
 import net.dv8tion.jda.core.entities.Message
-import java.time.format.DateTimeFormatter
 
 /**
- * Created by Comportment at 23:18 on 15/05/17
+ * Created by Comportment at 19:07 on 18/05/17
  * https://github.com/Comportment | comportment@diax.me
-
+ *
  * @author Comportment
  */
-@CommandDescription(name = "whoami", triggers = arrayOf("whoami"), attributes = arrayOf(CommandAttribute(key = "allowPrivate"), CommandAttribute(key = "description", value = "Tells you who you are.")))
-class WhoAmI : Command {
+@CommandDescription(name = "discrim", triggers = arrayOf("discriminator", "farm"), attributes = arrayOf(
+        CommandAttribute(key = "description", value = "Gives you a list of all the users with the given discriminator."),
+        CommandAttribute(key = "allowPrivate")
+), args = 1)
+class Discrim : Command {
 
-    override fun execute(trigger: Message, args: String) {
-        val user = trigger.author
-        trigger.channel.sendMessage(MessageUtil.defaultEmbed().setThumbnail(user.effectiveAvatarUrl).addField("***${user.name+"#"+user.discriminator}***", arrayOf("", "Unique ID:", user.id, "", "Discord Join Date:", DateTimeFormatter.RFC_1123_DATE_TIME.format(user.creationTime), "", "Avatar URL:", user.effectiveAvatarUrl, "", "").joinToString("\n"), false).build()).queue()
+    override fun execute(message: Message, args: String) {
+        val first = args.split(Regex("\\s+"))[0]
+        val users = Main.getShards().flatMap { jda -> jda.users }.filterNot { user -> user.discriminator == first }.subList(0, 10).map { user -> "${user.name}#${user.discriminator}" }.joinToString("\n")
+        message.channel.sendMessage(MessageUtil.basicEmbed("***Users found with the discriminator $first***\n$users")).queue()
     }
 }

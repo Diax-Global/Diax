@@ -24,6 +24,7 @@ import com.knockturnmc.api.util.ConfigurationUtils;
 import com.mashape.unirest.http.Unirest;
 import me.diax.comportment.commands.administator.*;
 import me.diax.comportment.commands.miscellaneous.Crystal;
+import me.diax.comportment.commands.miscellaneous.Discrim;
 import me.diax.comportment.commands.miscellaneous.Echo;
 import me.diax.comportment.commands.miscellaneous.Embed;
 import me.diax.comportment.commands.random.*;
@@ -72,6 +73,7 @@ public class Main implements ComponentProvider, Module {
 
                 //Misc
                 new Crystal(),
+                new Discrim(),
                 new Echo(),
                 new Embed(),
 
@@ -81,6 +83,7 @@ public class Main implements ComponentProvider, Module {
                 new Dice(),
                 new Dog(),
                 new Flip(),
+                new Invite(),
 
                 //Stats
                 getInstance(Help.class),
