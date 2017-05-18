@@ -37,7 +37,7 @@ class Discrim : Command {
 
     override fun execute(message: Message, args: String) {
         val first = args.split(Regex("\\s+"))[0]
-        val users = Main.getShards().flatMap { jda -> jda.users }.filterNot { user -> user.discriminator == first }.subList(0, 10).map { user -> "${user.name}#${user.discriminator}" }.joinToString("\n")
-        message.channel.sendMessage(MessageUtil.basicEmbed("***Users found with the discriminator $first***\n$users")).queue()
+        val users = Main.getShards().flatMap { jda -> jda.users }.filter { user -> user.discriminator == first }.subList(0, 10).map { user -> "${user.name}#${user.discriminator}" }.joinToString("\n")
+        message.channel.sendMessage(MessageUtil.basicEmbed("***Users found with the discriminator #$first***\n$users")).queue()
     }
 }

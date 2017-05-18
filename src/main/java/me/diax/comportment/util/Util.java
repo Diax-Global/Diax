@@ -32,7 +32,7 @@ public class Util {
 
     public static String getAnimal(String animal) {
         try {
-            return Unirest.get("https://shibe.online/api/" + animal + "/?count=1")
+            return Unirest.get("http://shibe.online/api/" + animal + "/?count=1")
                     .header("User-Agent", "Diax-Bot")
                     .header("Content-Type", "application/json")
                     .asJson().getBody().getArray().getString(0);

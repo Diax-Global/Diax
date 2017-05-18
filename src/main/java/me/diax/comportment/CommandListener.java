@@ -18,6 +18,7 @@ package me.diax.comportment;
 
 import me.diax.comportment.jdacommand.Command;
 import me.diax.comportment.jdacommand.CommandHandler;
+import me.diax.comportment.util.MessageUtil;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
@@ -51,7 +52,11 @@ public class CommandListener extends ListenerAdapter {
         Command command = handler.findCommand(first);
         if (command == null) return;
         if (!command.hasAttribute("allowPrivate")) return;
-        handler.execute(command, event.getMessage(), message.replaceFirst(first, ""));
+        if (command.getDescription().args() > message.split("\\s+").length) {
+            event.getChannel().sendMessage(MessageUtil.errorEmbed("You did not specify enough arguments!")).queue();
+            return;
+        }
+        handler.execute(command, event.getMessage(), message.replaceFirst(Pattern.quote(first), ""));
     }
 
     @Override
@@ -61,9 +66,14 @@ public class CommandListener extends ListenerAdapter {
         message = message.replaceFirst(Pattern.quote(prefix), "");
         String first = message.split("\\s+")[0];
         Command command = handler.findCommand(first);
+        if (command == null) return;
+        if (command.getDescription().args() > message.split("\\s+").length) {
+            event.getChannel().sendMessage(MessageUtil.errorEmbed("You did not specify enough arguments!")).queue();
+            return;
+        }
         handler.execute(
                 command,
                 event.getMessage(),
-                message.replaceFirst(first, ""));
+                message.replaceFirst(Pattern.quote(first), ""));
     }
 }

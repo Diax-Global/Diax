@@ -36,15 +36,23 @@ class Invite : Command {
     override fun execute(message: Message, args: String) {
         message.channel.sendMessage(MessageUtil.basicEmbed("Searching for server...")).queue{ msg ->
             var invite = ""
+            var guilds = Main.getShards().flatMap { jda -> jda.guilds }
+            if (message.guild != null) guilds = guilds.minus(message.guild)
             while (invite == "") {
-                val guilds = Main.getShards().flatMap { jda -> jda.guilds }
+                if (guilds.isEmpty()) {
+                    msg.editMessage(MessageUtil.errorEmbed("No guilds could be found :/")).queue()
+                    invite = "mission failed"
+                    continue
+                }
+                val guild = guilds[SecureRandom().nextInt(guilds.size)]
+                guilds = guilds.minus(guild)
                 try {
                     invite = "https://discord.gg/" + guilds[SecureRandom().nextInt(guilds.size)].publicChannel.createInvite().complete().code
+                    msg.editMessage(MessageUtil.basicEmbed("Server found: $invite")).queue()
                 } catch (e: Exception) {
                     continue
                 }
             }
-            msg.editMessage(MessageUtil.basicEmbed("Server found: $invite")).queue()
         }
     }
 }
