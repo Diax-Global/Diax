@@ -52,6 +52,7 @@ class Statistics : Command {
                 "__**Libraries**__",
                 "JDA: ${JDAInfo.VERSION}",
                 "JDA-Command: ${JDACommandInfo.VERSION}",
+                "Lavaplayer: 1.2.39",
                 "Java: ${System.getProperty("java.version")}",
                 "Kotlin: ${KotlinVersion.CURRENT}",
                 "",

@@ -34,6 +34,6 @@ class WhoAmI : Command {
 
     override fun execute(trigger: Message, args: String) {
         val user = trigger.author
-        trigger.channel.sendMessage(MessageUtil.defaultEmbed().setThumbnail(user.effectiveAvatarUrl).addField("***${user.name+"#"+user.discriminator}***", arrayOf("", "Unique ID:", user.id, "", "Discord Join Date:", DateTimeFormatter.RFC_1123_DATE_TIME.format(user.creationTime), "", "Avatar URL:", user.effectiveAvatarUrl, "", "").joinToString("\n"), false).build()).queue()
+        trigger.channel.sendMessage(MessageUtil.defaultEmbed().setThumbnail(user.effectiveAvatarUrl).addField("***${user.name+"#"+user.discriminator}***", arrayOf("", "__**Unique ID:**__", user.id, "", "__**Discord Join Date:**__", DateTimeFormatter.RFC_1123_DATE_TIME.format(user.creationTime), "", "__**Avatar URL:**__", user.effectiveAvatarUrl, "", "").joinToString("\n"), false).build()).queue()
     }
 }
