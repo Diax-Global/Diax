@@ -26,7 +26,7 @@ import net.dv8tion.jda.core.entities.MessageEmbed;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
 
-import java.util.concurrent.TimeUnit;
+import java.sql.Time;
 
 /**
  * Created by Comportment at 21:02 on 18/05/17
@@ -125,11 +125,6 @@ public class MusicTrack implements AudioTrack {
     }
 
     public String getLengthString() {
-        long length = this.getInfo().length;
-        long hours = TimeUnit.MILLISECONDS.toHours(length);
-        long mins = TimeUnit.MILLISECONDS.toMinutes(length) % TimeUnit.HOURS.toMinutes(hours);
-        long seconds = TimeUnit.MILLISECONDS.toSeconds(length) % TimeUnit.MINUTES.toSeconds(mins);
-        return String.format("%02d:%02d:%02d",
-                hours, mins, seconds);
+        return new Time(this.getInfo().length - 3600000) + "";
     }
 }

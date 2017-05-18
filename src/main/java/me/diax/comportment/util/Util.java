@@ -41,6 +41,15 @@ public class Util {
         }
     }
 
+    public static String paste(String input) {
+        try {
+            return "https://hastebin.com/" + Unirest.post("https://hastebin.com/documents").body(input)
+                    .asJson().getBody().getObject().getString("key");
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
     public static boolean checkPermission(Guild guild, User user, Permission permission) {
         return PermissionUtil.checkPermission(guild.getMember(user), permission) || user.getIdLong() == getOwnerLong();
     }

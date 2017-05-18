@@ -53,8 +53,8 @@ public class TrackScheduler extends AudioEventAdapter implements Runnable {
     public GuildMusicManager manager;
     private boolean repeating = false;
 
-    private MusicTrack currentTrack;
-    private MusicTrack lastTrack;
+    public MusicTrack currentTrack;
+    public MusicTrack lastTrack;
 
     public TrackScheduler(GuildMusicManager manager) {
         this.manager = manager;
@@ -65,7 +65,7 @@ public class TrackScheduler extends AudioEventAdapter implements Runnable {
     public boolean play(MusicTrack track) {
         if (track != null) {
             currentTrack = track;
-            return manager.player.startTrack(track, false);
+            if (joinVoiceChannel()) return manager.player.startTrack(track, false);
         }
         return false;
     }

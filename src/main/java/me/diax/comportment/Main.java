@@ -27,11 +27,10 @@ import me.diax.comportment.commands.miscellaneous.Crystal;
 import me.diax.comportment.commands.miscellaneous.Discrim;
 import me.diax.comportment.commands.miscellaneous.Echo;
 import me.diax.comportment.commands.miscellaneous.Embed;
+import me.diax.comportment.commands.musical.*;
 import me.diax.comportment.commands.random.*;
 import me.diax.comportment.commands.statistical.*;
 import me.diax.comportment.jdacommand.CommandHandler;
-import me.diax.comportment.scheduler.DiaxScheduler;
-import me.diax.comportment.scheduler.DiaxTask;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -73,6 +72,16 @@ public class Main implements ComponentProvider, Module {
                 new Discrim(),
                 new Echo(),
                 new Embed(),
+
+                //Music
+                new Current(),
+                new Join(),
+                new Play(),
+                new Queue(),
+                new Repeat(),
+                new Shuffle(),
+                new Skip(),
+                new Stop(),
 
                 //Rand
                 new Bird(),
