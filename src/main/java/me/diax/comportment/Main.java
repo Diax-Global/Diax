@@ -28,10 +28,7 @@ import me.diax.comportment.commands.miscellaneous.Discrim;
 import me.diax.comportment.commands.miscellaneous.Echo;
 import me.diax.comportment.commands.miscellaneous.Embed;
 import me.diax.comportment.commands.random.*;
-import me.diax.comportment.commands.statistical.Help;
-import me.diax.comportment.commands.statistical.Ping;
-import me.diax.comportment.commands.statistical.Statistics;
-import me.diax.comportment.commands.statistical.WhoAmI;
+import me.diax.comportment.commands.statistical.*;
 import me.diax.comportment.jdacommand.CommandHandler;
 import me.diax.comportment.scheduler.DiaxScheduler;
 import me.diax.comportment.scheduler.DiaxTask;
@@ -88,6 +85,7 @@ public class Main implements ComponentProvider, Module {
                 //Stats
                 getInstance(Help.class),
                 new Ping(),
+                new Shard(),
                 new Statistics(),
                 new WhoAmI()
         );

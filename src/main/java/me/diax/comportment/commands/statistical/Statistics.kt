@@ -38,8 +38,8 @@ class Statistics : Command {
         val rt = Runtime.getRuntime()
         trigger.channel.sendMessage(MessageUtil.basicEmbed(arrayOf(
                 "__**Statistics**__",
-                "Ram: [Used / Total] [${(rt.totalMemory() - rt.freeMemory()) / 1024 / 1024}Mb / ${rt.totalMemory() / 1024 / 1024}Mb]",
-                "Shards: [Current / Max] ${trigger.jda.shardInfo?.shardString ?: "[1 / 1]"}",
+                "Ram: [Used/Total] [${(rt.totalMemory() - rt.freeMemory()) / 1024 / 1024}Mb/${rt.totalMemory() / 1024 / 1024}Mb]",
+                "Shards: [Current/Total] ${trigger.jda.shardInfo?.shardString?.replace(" ", "") ?: "[1/1]"}",
                 "Guilds: ${Main.getGuilds()}",
                 "Users: ${Main.getUserCount()}",
                 "",
