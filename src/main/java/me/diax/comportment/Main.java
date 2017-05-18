@@ -25,6 +25,8 @@ import com.mashape.unirest.http.Unirest;
 import me.diax.comportment.commands.administator.*;
 import me.diax.comportment.commands.miscellaneous.Crystal;
 import me.diax.comportment.commands.miscellaneous.Echo;
+import me.diax.comportment.commands.miscellaneous.Embed;
+import me.diax.comportment.commands.random.*;
 import me.diax.comportment.commands.statistical.Help;
 import me.diax.comportment.commands.statistical.Ping;
 import me.diax.comportment.commands.statistical.Statistics;
@@ -71,6 +73,14 @@ public class Main implements ComponentProvider, Module {
                 //Misc
                 new Crystal(),
                 new Echo(),
+                new Embed(),
+
+                //Rand
+                new Bird(),
+                new Cat(),
+                new Dice(),
+                new Dog(),
+                new Flip(),
 
                 //Stats
                 getInstance(Help.class),

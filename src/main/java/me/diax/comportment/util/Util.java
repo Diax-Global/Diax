@@ -16,6 +16,7 @@
 
 package me.diax.comportment.util;
 
+import com.mashape.unirest.http.Unirest;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.User;
@@ -28,6 +29,17 @@ import net.dv8tion.jda.core.utils.PermissionUtil;
  * @author Comportment
  */
 public class Util {
+
+    public static String getAnimal(String animal) {
+        try {
+            return Unirest.get("https://shibe.online/api/" + animal + "/?count=1")
+                    .header("User-Agent", "Diax-Bot")
+                    .header("Content-Type", "application/json")
+                    .asJson().getBody().getArray().getString(0);
+        } catch (Exception e) {
+            return "https://http.cat/404.jpg";
+        }
+    }
 
     public static boolean checkPermission(Guild guild, User user, Permission permission) {
         return PermissionUtil.checkPermission(guild.getMember(user), permission) || user.getIdLong() == getOwnerLong();
