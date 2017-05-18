@@ -29,7 +29,7 @@ import net.dv8tion.jda.core.entities.Message
  *
  * @author Comportment
  */
-@CommandDescription(name = "discrim", triggers = arrayOf("discriminator", "farm"), attributes = arrayOf(
+@CommandDescription(name = "discrim", triggers = arrayOf("discrim", "discriminator", "farm"), attributes = arrayOf(
         CommandAttribute(key = "description", value = "Gives you a list of all the users with the given discriminator."),
         CommandAttribute(key = "allowPrivate")
 ), args = 1)
@@ -37,7 +37,9 @@ class Discrim : Command {
 
     override fun execute(message: Message, args: String) {
         val first = args.split(Regex("\\s+"))[0]
-        val users = Main.getShards().flatMap { jda -> jda.users }.filter { user -> user.discriminator == first }.subList(0, 10).map { user -> "${user.name}#${user.discriminator}" }.joinToString("\n")
-        message.channel.sendMessage(MessageUtil.basicEmbed("***Users found with the discriminator #$first***\n$users")).queue()
+        val list = Main.getShards().flatMap { jda -> jda.users }.filter { user -> user.discriminator == first }
+        if (list.size > 10) list.subList(0, 10)
+        val users = list.map { user -> "${user.name}#${user.discriminator}" }.joinToString("\n")
+        message.channel.sendMessage(MessageUtil.basicEmbed("__**Users with the discriminator #$first**__\n\n$users")).queue()
     }
 }

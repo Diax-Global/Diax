@@ -48,4 +48,8 @@ public class Util {
     public static long getOwnerLong() {
         return 293884638101897216L;
     }
+
+    public static String links() {
+        return String.format("Invite: %s\n Discord: %s\nPayPal: %s\nPatreon: %s", "https://discordapp.com/oauth2/authorize?scope=bot&client_id=295500621862404097&permissions=8", "https://discord.gg/5sJZa2y", "https://paypal.me/Comportment", "https://www.patreon.com/Diax");
+    }
 }

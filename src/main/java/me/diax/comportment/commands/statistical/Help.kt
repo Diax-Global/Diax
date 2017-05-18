@@ -21,6 +21,7 @@ import me.diax.comportment.jdacommand.CommandAttribute
 import me.diax.comportment.jdacommand.CommandDescription
 import me.diax.comportment.jdacommand.CommandHandler
 import me.diax.comportment.util.MessageUtil
+import me.diax.comportment.util.Util
 import net.dv8tion.jda.core.entities.Message
 import javax.inject.Inject
 
@@ -49,7 +50,7 @@ constructor(private val handler: CommandHandler) : Command {
                     cd.triggers.joinToString(", "))
                     .joinToString("\n"))).queue()
         } else {
-            message.channel.sendMessage(MessageUtil.basicEmbed(
+            message.channel.sendMessage(MessageUtil.basicEmbed("__**Links:**__\n\n" + Util.links() + "\n\n__**Commands:**__\n\n" +
                     handler.commands.filter { cd -> !cd.hasAttribute("hideFromHelp") }.map { getHelpFormat(it) }.joinToString("\n") + "\n\n"
                     + "Do `help [command]` for more information about a command.")).queue()
         }
