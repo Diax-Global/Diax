@@ -26,8 +26,6 @@ import net.dv8tion.jda.core.entities.MessageEmbed;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
 
-import java.sql.Time;
-
 /**
  * Created by Comportment at 21:02 on 18/05/17
  * https://github.com/Comportment | comportment@diax.me
@@ -133,7 +131,6 @@ public class MusicTrack implements AudioTrack {
 
     public String getLengthString() {
         // TODO: Fix this, it always returns 18:04:xxx
-        //return new Time(this.getInfo().length - 3600000) + "";
         long t = this.getInfo().length;
         boolean neg = t < 0;
         if (neg) t = t * -1;

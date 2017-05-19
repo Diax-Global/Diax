@@ -19,6 +19,7 @@ package me.diax.comportment.commands.miscellaneous
 import me.diax.comportment.jdacommand.Command
 import me.diax.comportment.jdacommand.CommandAttribute
 import me.diax.comportment.jdacommand.CommandDescription
+import me.diax.comportment.util.MessageUtil
 import net.dv8tion.jda.core.entities.Message
 import net.dv8tion.jda.core.exceptions.PermissionException
 
@@ -36,7 +37,10 @@ class Echo : Command {
             trigger.delete().queue()
         } catch (ignored: PermissionException) {
         }
-
-        trigger.channel.sendMessage(args).queue()
+        try {
+            trigger.channel.sendMessage(args).queue()
+        } catch (e: Exception) {
+            trigger.channel.sendMessage(MessageUtil.errorEmbed("I can't send nothing!")).queue()
+        }
     }
 }

@@ -19,12 +19,12 @@ package me.diax.comportment.commands.administator;
 import me.diax.comportment.jdacommand.Command
 import me.diax.comportment.jdacommand.CommandAttribute
 import me.diax.comportment.jdacommand.CommandDescription
-import me.diax.comportment.scheduler.DiaxScheduler
 import me.diax.comportment.util.MessageUtil
 import me.diax.comportment.util.Util
 import net.dv8tion.jda.core.Permission
 import net.dv8tion.jda.core.entities.Message
 import net.dv8tion.jda.core.exceptions.PermissionException
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by Comportment at 00:03 on 17/05/17
@@ -48,11 +48,7 @@ class Purge : Command {
             val msg = history.filterNot { it.isPinned }
             try {
                 channel.deleteMessages(msg).queue { _ ->
-                    message.channel.sendMessage(MessageUtil.basicEmbed("${msg.size} messages have been deleted.\nThis message will be deleted after 10 seconds.")).queue { delete ->
-                        DiaxScheduler.delayTask({
-                            delete.delete().queue()
-                        }, 10000L)
-                    }
+                    message.channel.sendMessage(MessageUtil.basicEmbed("${msg.size} messages have been deleted.\nThis message will be deleted after 10 seconds.")).queue { it.delete().queueAfter(10, TimeUnit.SECONDS) }
                 }
             } catch (exception: PermissionException) {
                 message.channel.sendMessage(MessageUtil.basicEmbed("Could not purge: #${channel.name} do I have enough permission?"))

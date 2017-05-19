@@ -22,8 +22,11 @@ import me.diax.comportment.util.MessageUtil;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import net.dv8tion.jda.core.utils.SimpleLog;
 
 import javax.inject.Inject;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.regex.Pattern;
 
 /**
@@ -35,7 +38,11 @@ import java.util.regex.Pattern;
 public class CommandListener extends ListenerAdapter {
 
     private final CommandHandler handler;
+    private static final ThreadGroup threadGroup = new ThreadGroup("Command Executor");
+    private static final ExecutorService commandsExecutor = Executors.newCachedThreadPool(r -> new Thread(threadGroup, r, "Command Pool"));
+
     private final String prefix;
+    private final SimpleLog logger = SimpleLog.getLog("Command-Listener");
 
     @Inject
     public CommandListener(DiaxProperties properties, CommandHandler handler) {
@@ -45,35 +52,46 @@ public class CommandListener extends ListenerAdapter {
 
     @Override
     public void onPrivateMessageReceived(PrivateMessageReceivedEvent event) {
-        String message = event.getMessage().getRawContent();
-        if (message.startsWith(prefix)) message = message.replaceFirst(Pattern.quote(prefix), "");
-        message = message.trim();
-        String first = message.split("\\s+")[0];
-        Command command = handler.findCommand(first);
-        if (command == null) return;
-        if (!command.hasAttribute("allowPrivate")) return;
-        if (command.getDescription().args() > message.split("\\s+").length) {
-            event.getChannel().sendMessage(MessageUtil.errorEmbed("You did not specify enough arguments!")).queue();
-            return;
-        }
-        handler.execute(command, event.getMessage(), message.replaceFirst(Pattern.quote(first), ""));
+        final String message = event.getMessage().getRawContent();
+        commandsExecutor.submit(() -> {
+            String truncated;
+            if (message.startsWith(prefix)) {
+                truncated = message.replaceFirst(Pattern.quote(prefix), "").trim();
+            } else {
+                truncated = message.trim();
+            }
+            logger.log(SimpleLog.Level.INFO, "PM | " + event.getAuthor() + " | " + event.getMessage().getRawContent());
+            String first = message.split("\\s+")[0];
+            Command command = handler.findCommand(first);
+            if (command == null) return;
+            if (!command.hasAttribute("allowPrivate")) return;
+            if (command.getDescription().args() > truncated.split("\\s+").length) {
+                event.getChannel().sendMessage(MessageUtil.errorEmbed("You did not specify enough arguments!")).queue();
+                return;
+            }
+            handler.execute(command, event.getMessage(), truncated.replaceFirst(Pattern.quote(first), ""));
+
+        });
     }
 
     @Override
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
         String message = event.getMessage().getRawContent();
-        if (!message.startsWith(prefix)) return;
-        message = message.replaceFirst(Pattern.quote(prefix), "");
-        String first = message.split("\\s+")[0];
-        Command command = handler.findCommand(first);
-        if (command == null) return;
-        if (command.getDescription().args() > message.split("\\s+").length) {
-            event.getChannel().sendMessage(MessageUtil.errorEmbed("You did not specify enough arguments!")).queue();
-            return;
-        }
-        handler.execute(
-                command,
-                event.getMessage(),
-                message.replaceFirst(Pattern.quote(first), ""));
+        if (!message.startsWith(prefix) || event.getAuthor().isBot()) return;
+        commandsExecutor.submit(() -> {
+            logger.log(SimpleLog.Level.INFO, event.getGuild() + " | " + event.getAuthor() + " | " + event.getMessage().getRawContent());
+            String truncated = message.trim().replaceFirst(Pattern.quote(prefix), "");
+            String first = truncated.split("\\s+")[0];
+            Command command = handler.findCommand(first);
+            if (command == null) return;
+            if (command.getDescription().args() > truncated.split("\\s+").length) {
+                event.getChannel().sendMessage(MessageUtil.errorEmbed("You did not specify enough arguments!")).queue();
+                return;
+            }
+            handler.execute(
+                    command,
+                    event.getMessage(),
+                    truncated.replaceFirst(Pattern.quote(first), ""));
+        });
     }
 }
