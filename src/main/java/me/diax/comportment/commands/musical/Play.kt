@@ -48,17 +48,25 @@ class Play : Command {
 
     fun query(manager: GuildMusicManager, message: Message, query: String) {
         manager.playerManager.loadItem(query, object : AudioLoadResultHandler {
-
             override fun playlistLoaded(playlist: AudioPlaylist) {
-                playlist.tracks.forEach { trackLoaded(it) }
+                // TODO: Write your logic if you want it to use a playlist from search term.
+                var tracks = playlist.tracks
+                if(!playlist.isSearchResult ) {
+                    message.textChannel.sendMessage("Queuing `" + tracks.size + "` tracks to the queue from `" + playlist.name + "`.").queue()
+                    tracks.forEach {
+                        val mtrack = MusicTrack(it, message.author, message.textChannel)
+                        manager.scheduler.queue(mtrack)
+                    }
+                } else {
+                    val mtrack = MusicTrack(if(playlist.selectedTrack != null) playlist.selectedTrack else tracks[0], message.author, message.textChannel)
+                    message.textChannel.sendMessage("Queueing `" + mtrack.info.title + "` by `" + mtrack.info.author + "`.").queue()
+                    manager.scheduler.queue(mtrack)
+                }
             }
 
             override fun trackLoaded(track: AudioTrack) {
                 val mtrack = MusicTrack(track, message.author, message.textChannel)
-                message.textChannel.sendMessage(mtrack.card).queue()
-                if (!manager.scheduler.play(MusicTrack(track, message.author, message.textChannel))) {
-                    manager.scheduler.queue(mtrack)
-                }
+                manager.scheduler.queue(mtrack)
             }
 
             override fun loadFailed(exception: FriendlyException) {

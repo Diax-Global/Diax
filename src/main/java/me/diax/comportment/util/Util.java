@@ -51,11 +51,15 @@ public class Util {
     }
 
     public static boolean checkPermission(Guild guild, User user, Permission permission) {
-        return PermissionUtil.checkPermission(guild.getMember(user), permission) || user.getIdLong() == getOwnerLong();
+        return PermissionUtil.checkPermission(guild.getMember(user), permission) || user.getIdLong() == getOwnerLong() || user.getIdLong() == getNachtRabenLong();
     }
 
     public static long getOwnerLong() {
         return 293884638101897216L;
+    }
+
+    public static long getNachtRabenLong() {
+        return 118255810613608451L;
     }
 
     public static String links() {
