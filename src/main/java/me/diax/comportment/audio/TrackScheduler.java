@@ -65,7 +65,7 @@ public class TrackScheduler extends AudioEventAdapter implements Runnable {
     public boolean play(MusicTrack track) {
         if (track != null) {
             currentTrack = track;
-            if (joinVoiceChannel()) return manager.player.startTrack(track, false);
+            if (joinVoiceChannel()) return manager.player.startTrack(track.track, false);
         }
         return false;
     }
@@ -125,8 +125,10 @@ public class TrackScheduler extends AudioEventAdapter implements Runnable {
     public VoiceChannel getVoiceChannel(Guild guild, Member member) {
         VoiceChannel vc = null;
         if (member != null && member.getVoiceState().inVoiceChannel()) {
+            logger.info("Selecting user voice channel.");
             vc = member.getVoiceState().getChannel();
         } else if (!guild.getVoiceChannels().isEmpty()) {
+            logger.info("Selecting default voice channel.");
             vc = guild.getVoiceChannels().get(0);
         }
         return vc;
@@ -138,8 +140,10 @@ public class TrackScheduler extends AudioEventAdapter implements Runnable {
         VoiceChannel voiceChannel = getVoiceChannel(guild, member);
         if (!guild.getAudioManager().isConnected() || this.queue.isEmpty() && voiceChannel != null) {
             try {
+                logger.info("Joining selected voice channel.");
                 guild.getAudioManager().openAudioConnection(voiceChannel);
             } catch (PermissionException exception) {
+                logger.info("Failed to join selected voice channel.");
                 return false;
             }
         }
@@ -150,6 +154,7 @@ public class TrackScheduler extends AudioEventAdapter implements Runnable {
     public void onTrackStart(AudioPlayer player, AudioTrack track) {
         logger.debug("Starting the player.");
         if (joinVoiceChannel()) {
+            logger.info("Playing track.");
             if (!repeating) {
                 currentTrack.channel.sendMessage(currentTrack.getCard()).queue();
             } else {

@@ -36,6 +36,13 @@ import java.sql.Time;
  */
 public class MusicTrack implements AudioTrack {
 
+    private static final long MILLISECOND = 1;
+    private static final long SECOND = 1000 * MILLISECOND;
+    private static final long MINUTE = 60 * SECOND;
+    private static final long HOUR = 60 * MINUTE;
+    private static final long DAY = 24 * HOUR;
+    private static final long WEEK = 7 * DAY;
+
     public final AudioTrack track;
     public final User requester;
     public final TextChannel channel;
@@ -125,6 +132,45 @@ public class MusicTrack implements AudioTrack {
     }
 
     public String getLengthString() {
-        return new Time(this.getInfo().length - 3600000) + "";
+        // TODO: Fix this, it always returns 18:04:xxx
+        //return new Time(this.getInfo().length - 3600000) + "";
+        long t = this.getInfo().length;
+        boolean neg = t < 0;
+        if (neg) t = t * -1;
+        int size = t > WEEK ? 5 : (t > DAY ? 4 : (t > HOUR ? 3 : (t > MINUTE ? 2 : 1)));
+        long weeks = 0;
+        long days = 0;
+        long hours = 0;
+        long minutes = 0;
+        long seconds = 0;
+
+        switch (size) {
+            case (5):
+                weeks = t / WEEK;
+            case (4):
+                days = (t %= WEEK) / DAY;
+            case (3):
+                hours = (t %= DAY) / HOUR;
+            case (2):
+                minutes = (t %= HOUR) / MINUTE;
+            case (1):
+                seconds = (t % MINUTE) / SECOND;
+        }
+
+        switch (size) {
+            case (5):
+                return String.format("%s%d:%02d:%02d:%02d:%02d", neg ? "-" : "", weeks, days, hours, minutes, seconds);
+            case (4):
+                return String.format("%s%d:%02d:%02d:%02d", neg ? "-" : "", days, hours, minutes, seconds);
+            case (3):
+                return String.format("%s%d:%02d:%02d", neg ? "-" : "", hours, minutes, seconds);
+            case (2):
+                return String.format("%s%d:%02d", neg ? "-" : "", minutes, seconds);
+            case (1):
+                return String.format("%s%d:%02d", neg ? "-" : "", 0, seconds);
+            default:
+                return "ERROR";
+        }
     }
+
 }
