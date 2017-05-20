@@ -51,7 +51,7 @@ constructor(private val handler: CommandHandler) : Command {
                     .joinToString("\n"))).queue()
         } else {
             message.channel.sendMessage(MessageUtil.basicEmbed("__**Links:**__\n\n" + Util.links() + "\n\n__**Commands:**__\n\n" +
-                    handler.commands.filter { cd -> !cd.hasAttribute("hideFromHelp") }.map { getHelpFormat(it) }.joinToString("\n") + "\n\n"
+                    handler.commands.filterNot { it.hasAttribute("hideFromHelp") }.map { getHelpFormat(it) }.joinToString("\n") + "\n\n"
                     + "Do `help [command]` for more information about a command.")).queue()
         }
     }

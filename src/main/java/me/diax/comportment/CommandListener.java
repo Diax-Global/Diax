@@ -19,6 +19,7 @@ package me.diax.comportment;
 import me.diax.comportment.jdacommand.Command;
 import me.diax.comportment.jdacommand.CommandHandler;
 import me.diax.comportment.util.MessageUtil;
+import me.diax.comportment.util.Util;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
@@ -86,6 +87,9 @@ public class CommandListener extends ListenerAdapter {
             if (command == null) return;
             if (command.getDescription().args() > truncated.split("\\s+").length) {
                 event.getChannel().sendMessage(MessageUtil.errorEmbed("You did not specify enough arguments!")).queue();
+                return;
+            }
+            if (command.hasAttribute("developerOnly") && !Util.isDeveloper(event.getAuthor().getIdLong())) {
                 return;
             }
             handler.execute(
