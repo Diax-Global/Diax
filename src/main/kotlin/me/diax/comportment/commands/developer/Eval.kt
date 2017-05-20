@@ -22,8 +22,11 @@ import me.diax.comportment.jdacommand.Command
 import me.diax.comportment.jdacommand.CommandAttribute
 import me.diax.comportment.jdacommand.CommandDescription
 import me.diax.comportment.jdacommand.JDACommandInfo
+import me.diax.comportment.util.Util
 import net.dv8tion.jda.core.JDAInfo
 import net.dv8tion.jda.core.entities.Message
+import java.util.concurrent.Executors
+
 
 /**
  * Created by Comportment at 08:34 on 20/05/17
@@ -38,7 +41,21 @@ import net.dv8tion.jda.core.entities.Message
 ))
 class Eval : Command {
 
+    private val EVALS = ThreadGroup("Eval Thread Pool")
+    private val POOL = Executors.newCachedThreadPool { r ->
+        Thread(EVALS, r,
+                EVALS.name + EVALS.activeCount())
+    }
+
     override fun execute(trigger: Message, args: String) {
+        POOL.submit{
+            try {
+                val result = makeEngine(trigger).evaluate(args)
+                if (result != null) trigger.channel.sendMessage("```groovy\n${makeEngine(trigger).evaluate(args)}\n```").queue()
+            } catch (e: Exception) {
+                trigger.channel.sendMessage(Util.paste(e.message)).queue()
+            }
+        }
     }
 
     fun makeEngine(trigger: Message): GroovyShell {
@@ -49,7 +66,6 @@ class Eval : Command {
         engine.setVariable("this", trigger)
         engine.setVariable("guild", trigger.guild)
         engine.setVariable("channel", trigger.channel)
-        //engine.setVariable("system", System())
         engine.setVariable("shards", Main.getShards())
         return engine
     }

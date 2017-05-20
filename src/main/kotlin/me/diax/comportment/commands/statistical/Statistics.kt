@@ -38,16 +38,22 @@ class Statistics : Command {
         val rt = Runtime.getRuntime()
         trigger.channel.sendMessage(MessageUtil.basicEmbed(arrayOf(
                 "__**Statistics**__",
+                "Server: [OS Name/Arch/Version] [${System.getProperty("os.name")}/${System.getProperty("os.arch")}/${System.getProperty("os.version")}]",
                 "Ram: [Used/Total] [${(rt.totalMemory() - rt.freeMemory()) / 1024 / 1024}Mb/${rt.totalMemory() / 1024 / 1024}Mb]",
                 "Shards: [Current/Total] ${trigger.jda.shardInfo?.shardString?.replace(" ", "") ?: "[1/1]"}",
-                "Guilds: ${Main.getGuilds()}",
-                "Users: ${Main.getUserCount()}",
+                "Theads: ${Thread.getAllStackTraces().keys.size}",
                 "",
-                "__**Channels**__",
+                "__**Discord Stats**__",
+                "",
+                "**Channels:**",
                 "Total Channels: ${Main.getTotalChannels()}",
                 "Text Channels: ${Main.getTextChannels()}",
                 "Voice Channels: ${Main.getVoiceChannels()}",
-                "Private Channels: ${Main.getTextChannels()}",
+                "Private Channels: ${Main.getPrivateChannels()}",
+                "",
+                "**Other**",
+                "Guilds: ${Main.getGuilds()}",
+                "Users: ${Main.getUserCount()}",
                 "",
                 "__**Libraries**__",
                 "JDA: ${JDAInfo.VERSION}",
@@ -57,7 +63,8 @@ class Statistics : Command {
                 "Kotlin: ${KotlinVersion.CURRENT}",
                 "",
                 "__**Developers**__",
-                "Comportment#9489: JDA-Command library dev, lead bot developer."
+                "Comportment#9489: JDA-Command library dev, lead bot developer.",
+                "NachtRaben#8307: Diax-Brazen dev, music logic foundations."
         ).joinToString("\n"))).queue()
     }
 }

@@ -30,7 +30,11 @@ import java.security.SecureRandom
  *
  * @author Comportment
  */
-@CommandDescription(name = "invite", triggers = arrayOf("invite", "guild", "server"), attributes = arrayOf(CommandAttribute(key = "description", value = "Invites you to a random server that Diax is in"), CommandAttribute(key = "allowPrivate")))
+@CommandDescription(name = "invite", triggers = arrayOf("invite", "guild", "server"), attributes = arrayOf(
+        CommandAttribute(key = "description", value = "Invites you to a random server that Diax is in"),
+        CommandAttribute(key = "allowPrivate")
+))
+@Deprecated("This shouldn't be used for now.")
 class Invite : Command {
 
     override fun execute(message: Message, args: String) {

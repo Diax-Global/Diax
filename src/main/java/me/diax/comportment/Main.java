@@ -23,6 +23,7 @@ import com.google.inject.Module;
 import com.knockturnmc.api.util.ConfigurationUtils;
 import com.mashape.unirest.http.Unirest;
 import me.diax.comportment.commands.administator.*;
+import me.diax.comportment.commands.developer.Eval;
 import me.diax.comportment.commands.miscellaneous.Crystal;
 import me.diax.comportment.commands.miscellaneous.Discrim;
 import me.diax.comportment.commands.miscellaneous.Echo;
@@ -67,6 +68,9 @@ public class Main implements ComponentProvider, Module {
                 new Unban(),
                 new VoiceKick(),
 
+                //Developer
+                new Eval(),
+
                 //Misc
                 new Crystal(),
                 new Discrim(),
@@ -89,10 +93,11 @@ public class Main implements ComponentProvider, Module {
                 new Dice(),
                 new Dog(),
                 new Flip(),
-                new Invite(),
+                //new me.diax.comportment.commands.random.Invite(),
 
                 //Stats
                 getInstance(Help.class),
+                new me.diax.comportment.commands.statistical.Invite(),
                 new Ping(),
                 new Shard(),
                 new Statistics(),
