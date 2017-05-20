@@ -16,6 +16,7 @@
 
 package me.diax.comportment.commands.statistical
 
+import com.sedmelluq.discord.lavaplayer.tools.PlayerLibrary
 import me.diax.comportment.Main
 import me.diax.comportment.jdacommand.Command
 import me.diax.comportment.jdacommand.CommandAttribute
@@ -58,7 +59,7 @@ class Statistics : Command {
                 "__**Libraries**__",
                 "JDA: ${JDAInfo.VERSION}",
                 "JDA-Command: ${JDACommandInfo.VERSION}",
-                "Lavaplayer: 1.2.39",
+                "Lavaplayer: ${PlayerLibrary.VERSION}",
                 "Java: ${System.getProperty("java.version")}",
                 "Kotlin: ${KotlinVersion.CURRENT}",
                 "",
