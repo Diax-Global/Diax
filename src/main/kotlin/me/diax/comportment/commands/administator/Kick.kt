@@ -46,7 +46,7 @@ class Kick : Command {
             try {
                 controller.kick(message.guild.getMember(user)).queue { _ -> message.channel.sendMessage(MessageUtil.basicEmbed("${user.name + "#" + user.discriminator} has been banned.")).queue() }
             } catch (e: Exception) {
-                message.channel.sendMessage(MessageUtil.basicEmbed("Could not ban: ${user.name + "#" + user.discriminator}, do I have enough permission?"))
+                message.channel.sendMessage(MessageUtil.basicEmbed("Could not kick: ${user.name + "#" + user.discriminator}, do I have enough permission?"))
             }
         }
     }
