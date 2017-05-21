@@ -38,10 +38,10 @@ class Urban : Command {
     override fun execute(message: Message, args: String) {
         try {
             val urban = Unirest.get("http://urbanscraper.herokuapp.com/define/" + args).asJson().body.`object`
-            val result = MessageUtil.defaultEmbed().setTitle(urban.getString("term"))
+            val result = MessageUtil.defaultEmbed().setTitle(urban.getString("term"), urban.getString("url"))
                     .setDescription(urban.getString("definition"))
                     //.setTimestamp(ZonedDateTime(Timestamp.valueOf("posted"))
-                    .addField("Example:", urban.getString("definition"), false).build()
+                    .addField("Example:", urban.getString("example"), false).build()
             message.channel.sendMessage(result).queue()
         } catch (e: Exception) {
             val result = MessageUtil.errorEmbed("Definition was not found.")
