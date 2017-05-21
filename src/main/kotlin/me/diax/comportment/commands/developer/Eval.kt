@@ -61,8 +61,8 @@ class Eval : Command {
     fun makeEngine(trigger: Message): GroovyShell {
         val engine = GroovyShell()
         engine.setVariable("jda", trigger.jda)
-        engine.setVariable("jdainfo", JDAInfo())
-        engine.setVariable("jdacinfo", JDACommandInfo())
+        engine.setVariable("JDAInfo", JDAInfo())
+        engine.setVariable("JDACommandInfo", JDACommandInfo())
         engine.setVariable("this", trigger)
         engine.setVariable("guild", trigger.guild)
         engine.setVariable("channel", trigger.channel)
