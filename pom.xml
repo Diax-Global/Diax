@@ -92,7 +92,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>me.diax.comportment.Main</mainClass>
+                            <mainClass>me.diax.comportment.diax.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
