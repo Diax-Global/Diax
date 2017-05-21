@@ -29,7 +29,10 @@ import java.time.format.DateTimeFormatter
 
  * @author Comportment
  */
-@CommandDescription(name = "whoami", triggers = arrayOf("whoami"), attributes = arrayOf(CommandAttribute(key = "allowPrivate"), CommandAttribute(key = "description", value = "Tells you who you are.")))
+@CommandDescription(name = "whoami", triggers = arrayOf("whoami"), attributes = arrayOf(
+        CommandAttribute(key = "allowPrivate"),
+        CommandAttribute(key = "description", value = "Tells you who you are.")
+))
 class WhoAmI : Command {
 
     override fun execute(trigger: Message, args: String) {

@@ -29,7 +29,10 @@ import java.time.temporal.ChronoUnit
 
  * @author Comportment
  */
-@CommandDescription(name = "ping", triggers = arrayOf("ping", "pang", "pong", "pung", "peng"), attributes = arrayOf(CommandAttribute(key = "description", value = "Checks Diax's ping to Discord."), CommandAttribute(key = "allowPrivate")))
+@CommandDescription(name = "ping", triggers = arrayOf("ping", "pang", "pong", "pung", "peng"), attributes = arrayOf(
+        CommandAttribute(key = "description", value = "Checks Diax's ping to Discord."),
+        CommandAttribute(key = "allowPrivate")
+))
 class Ping : Command {
 
     override fun execute(message: Message, s: String) {

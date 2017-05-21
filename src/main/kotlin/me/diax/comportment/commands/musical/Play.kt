@@ -34,7 +34,9 @@ import net.dv8tion.jda.core.entities.Message
  *
  * @author Comportment
  */
-@CommandDescription(name = "play", triggers = arrayOf("play"), attributes = arrayOf(CommandAttribute(key = "description", value = "Attempts to play the given track.")))
+@CommandDescription(name = "play", triggers = arrayOf("play"), attributes = arrayOf(
+        CommandAttribute(key = "description", value = "Attempts to play the given track.")
+))
 class Play : Command {
 
     override fun execute(message: Message, args: String) {

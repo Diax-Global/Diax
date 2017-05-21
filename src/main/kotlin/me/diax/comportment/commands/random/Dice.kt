@@ -29,7 +29,10 @@ import java.security.SecureRandom
  *
  * @author Comportment
  */
-@CommandDescription(name = "dice", triggers = arrayOf("die", "dice", "roll"), attributes = arrayOf(CommandAttribute(key = "description", value = "Rolls a dice and shows the result"), CommandAttribute(key = "allowPrivate")))
+@CommandDescription(name = "dice", triggers = arrayOf("die", "dice", "roll"), attributes = arrayOf(
+        CommandAttribute(key = "description", value = "Rolls a dice and shows the result"),
+        CommandAttribute(key = "allowPrivate")
+))
 class Dice : Command {
 
     override fun execute(message: Message, args: String) {

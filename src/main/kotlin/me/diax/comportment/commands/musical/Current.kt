@@ -29,7 +29,9 @@ import net.dv8tion.jda.core.entities.Message
  *
  * @author Comportment
  */
-@CommandDescription(name = "current", triggers = arrayOf("playing", "current"), attributes = arrayOf(CommandAttribute(key = "description", value = "Shows the track card for the currently playing song.")))
+@CommandDescription(name = "current", triggers = arrayOf("playing", "current"), attributes = arrayOf(
+        CommandAttribute(key = "description", value = "Shows the track card for the currently playing song.")
+))
 class Current : Command {
 
     override fun execute(message: Message, string: String) {

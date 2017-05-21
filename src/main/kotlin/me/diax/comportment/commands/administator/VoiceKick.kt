@@ -32,7 +32,9 @@ import net.dv8tion.jda.core.entities.VoiceChannel
  *
  * @author Comportment
  */
-@CommandDescription(name = "voicekick", triggers = arrayOf("voicekick", "vkick"), attributes = arrayOf(CommandAttribute(key = "description", value = "Kicks the mentioned users from a voice channel.")), args = 1)
+@CommandDescription(name = "voicekick", triggers = arrayOf("voicekick", "vkick"), attributes = arrayOf(
+        CommandAttribute(key = "description", value = "Kicks the mentioned users from a voice channel.")
+), args = 1)
 class VoiceKick : Command {
 
     override fun execute(message: Message, args: String) {

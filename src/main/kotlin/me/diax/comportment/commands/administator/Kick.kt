@@ -30,7 +30,9 @@ import net.dv8tion.jda.core.entities.Message
  *
  * @author Comportment
  */
-@CommandDescription(name = "ban", triggers = arrayOf("ban", "banne", "hammer"), attributes = arrayOf(CommandAttribute(key = "description", value = "Kicks a user if you have permission.")), args = 1)
+@CommandDescription(name = "ban", triggers = arrayOf("ban", "banne", "hammer"), attributes = arrayOf(
+        CommandAttribute(key = "description", value = "Kicks a user if you have permission.")
+), args = 1)
 class Kick : Command {
 
     override fun execute(message: Message, string: String) {

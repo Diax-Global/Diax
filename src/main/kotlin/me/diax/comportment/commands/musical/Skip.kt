@@ -29,7 +29,9 @@ import net.dv8tion.jda.core.entities.Message
  *
  * @author Comportment
  */
-@CommandDescription(name = "skip", triggers = arrayOf("skip", "next"), attributes = arrayOf(CommandAttribute(key = "description", value = "Skips the currently playing song.")))
+@CommandDescription(name = "skip", triggers = arrayOf("skip", "next"), attributes = arrayOf(
+        CommandAttribute(key = "description", value = "Skips the currently playing song.")
+))
 class Skip : Command {
 
     override fun execute(message: Message, string: String) {

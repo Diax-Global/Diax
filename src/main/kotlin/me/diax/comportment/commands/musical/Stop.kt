@@ -30,7 +30,9 @@ import net.dv8tion.jda.core.entities.Message
  *
  * @author Comportment
  */
-@CommandDescription(name = "stop", triggers = arrayOf("stop"), attributes = arrayOf(CommandAttribute(key = "description", value = "Stops the currently playing song and clears the queue.")))
+@CommandDescription(name = "stop", triggers = arrayOf("stop"), attributes = arrayOf(
+        CommandAttribute(key = "description", value = "Stops the currently playing song and clears the queue.")
+))
 class Stop : Command {
 
     override fun execute(message: Message, string: String) {

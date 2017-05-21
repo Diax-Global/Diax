@@ -28,7 +28,9 @@ import net.dv8tion.jda.core.entities.Message
  *
  * @author Comportment
  */
-@CommandDescription(name = "embed", triggers = arrayOf("embed", "announce"), attributes = arrayOf(CommandAttribute(key = "allowPrivate"), CommandAttribute(key = "description", value = "Embeds the given arguments")), args = 1)
+@CommandDescription(name = "embed", triggers = arrayOf("embed", "announce"), attributes = arrayOf(
+        CommandAttribute(key = "allowPrivate"), CommandAttribute(key = "description", value = "Embeds the given arguments")
+), args = 1)
 class Embed : Command {
 
     override fun execute(message: Message, args: String) {

@@ -31,7 +31,9 @@ import net.dv8tion.jda.core.exceptions.PermissionException
 
  * @author Comportment
  */
-@CommandDescription(name = "ban", triggers = arrayOf("ban", "banne", "hammer"), attributes = arrayOf(CommandAttribute(key = "description", value = "Bans a user if you have permission.")), args = 1)
+@CommandDescription(name = "ban", triggers = arrayOf("ban", "banne", "hammer"), attributes = arrayOf(
+        CommandAttribute(key = "description", value = "Bans a user if you have permission.")
+), args = 1)
 class Ban : Command {
 
     override fun execute(message: Message, s: String) {

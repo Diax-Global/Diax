@@ -29,7 +29,10 @@ import net.dv8tion.jda.core.entities.Message
  *
  * @author Comportment
  */
-@CommandDescription(name = "dog", triggers = arrayOf("doge", "god", "dog", "shibe"), attributes = arrayOf(CommandAttribute(key = "allowPrivate"), CommandAttribute(key = "description", value = "Shows a random dog picture")))
+@CommandDescription(name = "dog", triggers = arrayOf("doge", "god", "dog", "shibe"), attributes = arrayOf(
+        CommandAttribute(key = "allowPrivate"),
+        CommandAttribute(key = "description", value = "Shows a random dog picture")
+))
 class Dog : Command {
 
     override fun execute(message: Message, args: String) {

@@ -31,7 +31,9 @@ import net.dv8tion.jda.core.exceptions.PermissionException
  *
  * @author Comportment
  */
-@CommandDescription(name = "unban", triggers = arrayOf("unban", "pardon"), attributes = arrayOf(CommandAttribute(key = "description", value = "Unbans the mentioned banned users.")), args = 1)
+@CommandDescription(name = "unban", triggers = arrayOf("unban", "pardon"), attributes = arrayOf(
+        CommandAttribute(key = "description", value = "Unbans the mentioned banned users.")
+), args = 1)
 class Unban : Command {
 
     override fun execute(message: Message, args: String) {

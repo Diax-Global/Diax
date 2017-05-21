@@ -30,7 +30,9 @@ import net.dv8tion.jda.core.entities.Message
  *
  * @author Comportment
  */
-@CommandDescription(name = "queue", triggers = arrayOf("queue"), attributes = arrayOf(CommandAttribute(key = "description", value = "Gives you the queue.")))
+@CommandDescription(name = "queue", triggers = arrayOf("queue"), attributes = arrayOf(
+        CommandAttribute(key = "description", value = "Gives you the queue.")
+))
 class Queue : Command {
 
     override fun execute(message: Message, args: String) {

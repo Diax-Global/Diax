@@ -31,7 +31,9 @@ import net.dv8tion.jda.core.entities.Message
  *
  * @author Comportment
  */
-@CommandDescription(name = "shuffle", triggers = arrayOf("shuffle"), attributes = arrayOf(CommandAttribute(key = "description", value = "Shuffles the queue.")))
+@CommandDescription(name = "shuffle", triggers = arrayOf("shuffle"), attributes = arrayOf(
+        CommandAttribute(key = "description", value = "Shuffles the queue.")
+))
 class Shuffle : Command {
 
     override fun execute(message: Message, string: String) {

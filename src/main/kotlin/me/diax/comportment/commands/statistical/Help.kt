@@ -31,7 +31,10 @@ import javax.inject.Inject
 
  * @author Comportment
  */
-@CommandDescription(name = "help", triggers = arrayOf("diax", "help", "h", "?"), attributes = arrayOf(CommandAttribute(key = "description", value = "Shows help for all of the commands"), CommandAttribute(key = "allowPrivate")))
+@CommandDescription(name = "help", triggers = arrayOf("diax", "help", "h", "?"), attributes = arrayOf(
+        CommandAttribute(key = "description", value = "Shows help for all of the commands"),
+        CommandAttribute(key = "allowPrivate")
+))
 class Help @Inject
 constructor(private val handler: CommandHandler) : Command {
 

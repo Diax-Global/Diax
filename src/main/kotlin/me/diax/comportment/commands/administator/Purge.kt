@@ -32,7 +32,9 @@ import java.util.concurrent.TimeUnit
  *
  * @author Comportment
  */
-@CommandDescription(name = "purge", triggers = arrayOf("purge", "clear", "clean"), attributes = arrayOf(CommandAttribute(key = "description", value = "Purges up to 100 messages at a time from the chat.")), args = 1)
+@CommandDescription(name = "purge", triggers = arrayOf("purge", "clear", "clean"), attributes = arrayOf(
+        CommandAttribute(key = "description", value = "Purges up to 100 messages at a time from the chat.")
+), args = 1)
 class Purge : Command {
 
     override fun execute(message: Message, string: String) {

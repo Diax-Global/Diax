@@ -31,7 +31,9 @@ import net.dv8tion.jda.core.exceptions.PermissionException
  *
  * @author Comportment
  */
-@CommandDescription(name = "softban", triggers = arrayOf("softban", "softbanne"), attributes = arrayOf(CommandAttribute(key = "description", value = "Softbans the mentioned members from a guild.")), args = 1)
+@CommandDescription(name = "softban", triggers = arrayOf("softban", "softbanne"), attributes = arrayOf(
+        CommandAttribute(key = "description", value = "Softbans the mentioned members from a guild.")
+), args = 1)
 class SoftBan : Command {
 
     override fun execute(message: Message, args: String) {

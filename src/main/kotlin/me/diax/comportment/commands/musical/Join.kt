@@ -29,7 +29,9 @@ import net.dv8tion.jda.core.exceptions.PermissionException
  *
  * @author Comportment
  */
-@CommandDescription(name = "join", triggers = arrayOf("join"), attributes = arrayOf(CommandAttribute(key = "description", value = "Makes Diax attempt to join your voice channel.")))
+@CommandDescription(name = "join", triggers = arrayOf("join"), attributes = arrayOf(
+        CommandAttribute(key = "description", value = "Makes Diax attempt to join your voice channel.")
+))
 class Join : Command {
 
     override fun execute(message: Message, string: String) {

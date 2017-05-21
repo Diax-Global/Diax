@@ -29,7 +29,10 @@ import net.dv8tion.jda.core.exceptions.PermissionException
 
  * @author Comportment
  */
-@CommandDescription(name = "echo", triggers = arrayOf("echo", "repeat"), attributes = arrayOf(CommandAttribute(key = "description", value = "Echoes the arguments back into chat."), CommandAttribute(key = "allowPrivate")), args = 1)
+@CommandDescription(name = "echo", triggers = arrayOf("echo", "repeat"), attributes = arrayOf(
+        CommandAttribute(key = "description", value = "Echoes the arguments back into chat."),
+        CommandAttribute(key = "allowPrivate")
+), args = 1)
 class Echo : Command {
 
     override fun execute(trigger: Message, args: String) {
