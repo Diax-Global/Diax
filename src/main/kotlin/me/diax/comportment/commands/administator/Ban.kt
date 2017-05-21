@@ -40,6 +40,9 @@ class Ban : Command {
             return
         }
         message.mentionedUsers.forEach { user ->
+            if (user == message.author) {
+                message.channel.sendMessage(MessageUtil.errorEmbed("You can't ban yourself!")).queue()
+            }
             try {
                 message.guild.controller.ban(user, 7).queue { _ -> message.channel.sendMessage(MessageUtil.basicEmbed(user.name + "#" + user.discriminator + " has been banned.")).queue() }
             } catch (e: PermissionException) {

@@ -32,7 +32,10 @@ import net.dv8tion.jda.core.entities.Message
 
  * @author Comportment
  */
-@CommandDescription(name = "stats", triggers = arrayOf("statistics", "stats"), attributes = arrayOf(CommandAttribute(key = "description", value = "The description of the command to show in help"), CommandAttribute(key = "allowPrivate")))
+@CommandDescription(name = "stats", triggers = arrayOf("statistics", "stats"), attributes = arrayOf(
+        CommandAttribute(key = "description", value = "The description of the command to show in help"),
+        CommandAttribute(key = "allowPrivate")
+))
 class Statistics : Command {
 
     override fun execute(trigger: Message, args: String) {

@@ -100,6 +100,7 @@ public class Main implements ComponentProvider, Module {
                 new me.diax.comportment.commands.statistical.Invite(),
                 new Ping(),
                 new Shard(),
+                new Urban(),
                 new Statistics(),
                 new WhoAmI()
         );

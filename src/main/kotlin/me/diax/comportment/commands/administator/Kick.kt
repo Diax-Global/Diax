@@ -40,12 +40,13 @@ class Kick : Command {
             return
         }
         message.mentionedUsers.map { user ->
-            {
-                try {
-                    controller.kick(message.guild.getMember(user)).queue { success -> message.channel.sendMessage(MessageUtil.basicEmbed("${user.name + "#" + user.discriminator} has been banned.")).queue() }
-                } catch (e: Exception) {
-                    message.channel.sendMessage(MessageUtil.basicEmbed("Could not ban: ${user.name + "#" + user.discriminator}, do I have enough permission?"))
-                }
+            if (user == message.author) {
+                message.channel.sendMessage(MessageUtil.errorEmbed("You can't kick yourself!")).queue()
+            }
+            try {
+                controller.kick(message.guild.getMember(user)).queue { _ -> message.channel.sendMessage(MessageUtil.basicEmbed("${user.name + "#" + user.discriminator} has been banned.")).queue() }
+            } catch (e: Exception) {
+                message.channel.sendMessage(MessageUtil.basicEmbed("Could not ban: ${user.name + "#" + user.discriminator}, do I have enough permission?"))
             }
         }
     }
