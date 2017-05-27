@@ -17,6 +17,7 @@
 package me.diax.comportment.diax.commands.developer
 
 import groovy.lang.GroovyShell
+import groovy.lang.Binding
 import me.diax.comportment.diax.Main
 import me.diax.comportment.diax.util.Util
 import me.diax.comportment.jdacommand.Command
@@ -25,6 +26,7 @@ import me.diax.comportment.jdacommand.CommandDescription
 import me.diax.comportment.jdacommand.JDACommandInfo
 import net.dv8tion.jda.core.JDAInfo
 import net.dv8tion.jda.core.entities.Message
+import java.io.StringWriter
 import java.util.concurrent.Executors
 
 
@@ -50,8 +52,11 @@ class Eval : Command {
     override fun execute(trigger: Message, args: String) {
         POOL.submit{
             try {
-                val result = makeEngine(trigger).evaluate(args)
-                if (result != null) trigger.channel.sendMessage("```groovy\n${makeEngine(trigger).evaluate(args)}\n```").queue()
+                var engine = makeEngine(trigger)
+                val result = engine.evaluate(args)
+                if (result != null) trigger.channel.sendMessage("```groovy\n$result\n```").queue()
+                var stdout = engine.getProperty("out").toString()
+                if (!stdout.isEmpty()) trigger.channel.sendMessage("```groovy\nScript Output:\n$stdout\n```").queue()
             } catch (e: Exception) {
                 trigger.channel.sendMessage(Util.paste(e.message)).queue()
             }
@@ -59,7 +64,9 @@ class Eval : Command {
     }
 
     fun makeEngine(trigger: Message): GroovyShell {
-        val engine = GroovyShell()
+        var binding = Binding()
+        binding.setProperty("out", StringWriter())
+        val engine = GroovyShell(binding)
         engine.setVariable("jda", trigger.jda)
         engine.setVariable("JDAInfo", JDAInfo())
         engine.setVariable("JDACommandInfo", JDACommandInfo())
