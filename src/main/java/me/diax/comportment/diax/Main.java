@@ -23,7 +23,7 @@ import com.google.inject.Module;
 import com.knockturnmc.api.util.ConfigurationUtils;
 import com.mashape.unirest.http.Unirest;
 import me.diax.comportment.diax.commands.administator.*;
-import me.diax.comportment.diax.commands.developer.Eval;
+import me.diax.comportment.diax.commands.developer.BrainFsck;
 import me.diax.comportment.diax.commands.miscellaneous.*;
 import me.diax.comportment.diax.commands.musical.*;
 import me.diax.comportment.diax.commands.random.*;
@@ -67,11 +67,13 @@ public class Main implements ComponentProvider, Module {
 
                 //Developer
                 new Eval(),
+                new BrainFsck(),
 
                 //Misc
                 new Crystal(),
                 new Discrim(),
                 new Echo(),
+                new F(),
                 new Embed(),
 
                 //Music
@@ -93,6 +95,8 @@ public class Main implements ComponentProvider, Module {
                 //new me.diax.comportment.commands.random.Invite(),
 
                 //Stats
+                new Credits(),
+                new Donate(),
                 getInstance(Help.class),
                 new me.diax.comportment.diax.commands.statistical.Invite(),
                 new Ping(),

@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package me.diax.comportment.diax.commands.developer
+package me.diax.comportment.diax.commands.miscellaneous
 
-import groovy.lang.GroovyShell
 import groovy.lang.Binding
+import groovy.lang.GroovyShell
 import me.diax.comportment.diax.Main
 import me.diax.comportment.diax.util.Util
 import me.diax.comportment.jdacommand.Command

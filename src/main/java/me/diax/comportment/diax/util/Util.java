@@ -74,8 +74,8 @@ public class Util {
     }
 
     public static long getScore(User user) {
-        long score = Arrays.stream(Main.getShards()).flatMap(jda -> jda.getGuilds().stream()).filter(guild -> guild.getMember(user) != null).count();
-        score += Arrays.stream(Main.getShards()).flatMap(jda -> jda.getGuilds().stream()).filter(guild -> guild.getMember(user) != null && guild.getMember(user).isOwner()).count() * 100;
+        long score = Arrays.stream(Main.getShards()).flatMap(jda -> jda.getGuilds().stream()).filter(guild -> guild.getMember(user) != null).mapToLong(g -> g.getMembers().size()).count();
+        score *= Arrays.stream(Main.getShards()).flatMap(jda -> jda.getGuilds().stream()).filter(guild -> guild.getMember(user) != null && guild.getMember(user).isOwner()).count() + 1;
         return score;
     }
 }

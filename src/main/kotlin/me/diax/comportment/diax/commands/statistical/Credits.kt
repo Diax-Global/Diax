@@ -35,21 +35,22 @@ class Credits : Command {
 
     override fun execute(message: Message, args: String) {
         message.channel.sendMessage(MessageUtil.basicEmbed(arrayOf(
-                "-=+=-",
-                "NachtRaben#8307, for teaching me how to use lavaplayer and fixing my stupid mistakes",
-                "ImBursting#8306, for being my first Patreon",
-                "Andrew#0621, for being my first PayPal donator",
+                "-]-+-[-",
+                "NachtRaben#8307, for teaching me how to use lavaplayer and fixing my stupid mistakes.",
+                "ImBursting#8306, for being my first Patreon.",
+                "Andrew#0621, for being my first PayPal donator.",
                 "Kodehawa#3457, for helping me when I was down and always brightening my day.",
                 "Adrian#07522, for making me not make stupid decisions with my life.",
                 "Crystal#3166, for being the best backend developer I know. <>wat",
                 "Nomsy#7453, for coping with me. Good luck in your future.",
-                "DV8FromTheWorld#6297, for making JDA possible. [Imagine if I used D4J]",
+                "DV8FromTheWorld#6297, for making JDA possible. [Imagine if I had used D4J]",
                 "sedmelluq#3562, for making an awesome music library.",
                 "Skiletro#3888, for making a lot of art for Diax.",
                 "zer0ney#0025, for being the cutest doggo.",
                 "App#6132, for speaking to me even though you knew my past. Horses owo",
                 "luke#2865, for making me interested in first botting Discord.",
-                "-=+=-"
-        ).joinToString("\n"))).queue()
+                "Minn#6688, for reading the docs and making me interested in Kotlin.",
+                "-]-+-[-"
+        ).joinToString("\n\n", "```brainfuck\n", "```"))).queue()
     }
 }

@@ -39,7 +39,7 @@ class Unban : Command {
             return
         }
         try {
-            message.guild.controller.bans.queue { bans ->
+            message.guild.bans.queue { bans ->
                 message.mentionedUsers.map { user ->
                     val name = "${user.name}#${user.discriminator}"
                     if (bans.contains(user)) {

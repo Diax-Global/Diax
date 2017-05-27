@@ -14,26 +14,26 @@
  * limitations under the License.
  */
 
-package me.diax.comportment.diax.commands.developer
+package me.diax.comportment.diax.commands.miscellaneous
 
-import me.diax.comportment.brainjack.BrainJack
 import me.diax.comportment.jdacommand.Command
 import me.diax.comportment.jdacommand.CommandAttribute
 import me.diax.comportment.jdacommand.CommandDescription
 import net.dv8tion.jda.core.entities.Message
 
 /**
- * Created by Comportment at 21:35 on 26/05/17
+ * Created by Comportment at 00:08 on 28/05/17
  * https://github.com/Comportment | comportment@diax.me
  *
  * @author Comportment
  */
-@CommandDescription(name = "brainjack", triggers = arrayOf("bf", "brain", "brainfsk", "brain****", "brainfuck"), attributes = arrayOf(
-        CommandAttribute(key = "allowPrivate")
-), description = "A brainfuck interpretor, shhhh.")
-class BrainFsck : Command {
+@CommandDescription(name = "f", triggers = arrayOf("f", "respects"), attributes = arrayOf(
+        CommandAttribute(key = "allowPrivate"),
+        CommandAttribute(key = "hideFromHelp")
+), description = "pres F to pAY reSPeCts")
+class F : Command {
 
-    override fun execute(message: Message, string: String) {
-        message.channel.sendMessage(BrainJack(32).interpret(string)).queue()
+    override fun execute(message: Message, args: String) {
+        message.channel.sendMessage("${message.author.name} has paId reSPeckts").queue()
     }
 }
