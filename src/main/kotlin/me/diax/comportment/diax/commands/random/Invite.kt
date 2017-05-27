@@ -31,9 +31,8 @@ import java.security.SecureRandom
  * @author Comportment
  */
 @CommandDescription(name = "invite", triggers = arrayOf("invite", "guild", "server"), attributes = arrayOf(
-        CommandAttribute(key = "description", value = "Invites you to a random server that Diax is in"),
         CommandAttribute(key = "allowPrivate")
-))
+), description = "Invites you to a random guild Diax is in.")
 @Deprecated("This shouldn't be used for now.")
 class Invite : Command {
 

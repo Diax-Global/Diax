@@ -17,10 +17,13 @@
 package me.diax.comportment.diax.util;
 
 import com.mashape.unirest.http.Unirest;
+import me.diax.comportment.diax.Main;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.utils.PermissionUtil;
+
+import java.util.Arrays;
 
 /**
  * Created by Comportment at 00:48 on 16/05/17
@@ -68,5 +71,11 @@ public class Util {
 
     public static String links() {
         return String.format("Invite: %s\n Discord: %s\nPayPal: %s\nPatreon: %s", "https://discordapp.com/oauth2/authorize?scope=bot&client_id=295500621862404097&permissions=8", "https://discord.gg/5sJZa2y", "https://paypal.me/Comportment", "https://www.patreon.com/Diax");
+    }
+
+    public static long getScore(User user) {
+        long score = Arrays.stream(Main.getShards()).flatMap(jda -> jda.getGuilds().stream()).filter(guild -> guild.getMember(user) != null).count();
+        score += Arrays.stream(Main.getShards()).flatMap(jda -> jda.getGuilds().stream()).filter(guild -> guild.getMember(user) != null && guild.getMember(user).isOwner()).count() * 100;
+        return score;
     }
 }

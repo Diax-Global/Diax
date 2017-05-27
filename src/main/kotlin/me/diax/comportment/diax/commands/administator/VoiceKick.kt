@@ -19,7 +19,6 @@ package me.diax.comportment.diax.commands.administator
 import me.diax.comportment.diax.util.MessageUtil
 import me.diax.comportment.diax.util.Util
 import me.diax.comportment.jdacommand.Command
-import me.diax.comportment.jdacommand.CommandAttribute
 import me.diax.comportment.jdacommand.CommandDescription
 import net.dv8tion.jda.core.Permission
 import net.dv8tion.jda.core.entities.Message
@@ -32,9 +31,7 @@ import net.dv8tion.jda.core.entities.VoiceChannel
  *
  * @author Comportment
  */
-@CommandDescription(name = "voicekick", triggers = arrayOf("voicekick", "vkick"), attributes = arrayOf(
-        CommandAttribute(key = "description", value = "Kicks the mentioned users from a voice channel.")
-), args = 1)
+@CommandDescription(name = "voicekick", triggers = arrayOf("voicekick", "vkick"), description = "Kicks the mentioned users from the voice channel.", args = 1)
 class VoiceKick : Command {
 
     override fun execute(message: Message, args: String) {

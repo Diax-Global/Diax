@@ -32,9 +32,8 @@ import javax.inject.Inject
  * @author Comportment
  */
 @CommandDescription(name = "help", triggers = arrayOf("diax", "help", "h", "?"), attributes = arrayOf(
-        CommandAttribute(key = "description", value = "Shows help for all of the commands"),
         CommandAttribute(key = "allowPrivate")
-))
+), description = "Shows help for all of the commands.")
 class Help @Inject
 constructor(private val handler: CommandHandler) : Command {
 
@@ -47,7 +46,7 @@ constructor(private val handler: CommandHandler) : Command {
                     "__**${cd.name}**__",
                     "",
                     "__**Description:**__ ",
-                    command.getAttributeValueFromKey("description"),
+                    command.description.description,
                     "",
                     "__**Triggers:**__",
                     cd.triggers.joinToString(", "))

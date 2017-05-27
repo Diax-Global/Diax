@@ -29,7 +29,8 @@ import net.dv8tion.jda.core.entities.Message
  * @author Comportment
  */
 @CommandDescription(name = "shard", triggers = arrayOf("shard"), attributes = arrayOf(
-        CommandAttribute(key = "description", value = "Gives you shard information."), CommandAttribute(key = "allowPrivate")))
+        CommandAttribute(key = "allowPrivate")
+), description = "Gives you Diax's shard information.")
 class Shard : Command {
 
     override fun execute(message: Message, args: String) {

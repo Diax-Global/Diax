@@ -14,27 +14,25 @@
  * limitations under the License.
  */
 
-package me.diax.comportment.diax.commands.random
+package me.diax.comportment.diax.commands.statistical
 
-import me.diax.comportment.diax.util.MessageUtil
-import me.diax.comportment.diax.util.Util
 import me.diax.comportment.jdacommand.Command
 import me.diax.comportment.jdacommand.CommandAttribute
 import me.diax.comportment.jdacommand.CommandDescription
 import net.dv8tion.jda.core.entities.Message
 
 /**
- * Created by Comportment at 18:17 on 18/05/17
+ * Created by Comportment at 22:44 on 27/05/17
  * https://github.com/Comportment | comportment@diax.me
  *
  * @author Comportment
  */
-@CommandDescription(name = "bird", triggers = arrayOf("bird", "birb"), attributes = arrayOf(
+@CommandDescription(name = "donate", triggers = arrayOf("patreon", "paypal"), attributes = arrayOf(
         CommandAttribute(key = "allowPrivate")
-), description = "Shows a random bird picture.")
-class Bird : Command {
+), description = "Gives you Diax's donation links.")
+class Donate : Command {
 
     override fun execute(message: Message, args: String) {
-        message.channel.sendMessage(MessageUtil.defaultEmbed().setTitle("\uD83D\uDC26").setImage(Util.getAnimal("birds")).build()).queue()
+        message.channel.sendMessage("uwu donashion? yes please! ^-^\n<3 if you are shure senpai <3333\nPayPal: https://paypal.me/Comportment\nPatreon: https://patreon.com/Comportment\nonegai~").queue()
     }
 }

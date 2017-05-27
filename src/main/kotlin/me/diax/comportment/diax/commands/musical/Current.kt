@@ -19,7 +19,6 @@ package me.diax.comportment.diax.commands.musical
 import me.diax.comportment.diax.audio.GuildMusicManager
 import me.diax.comportment.diax.util.MessageUtil
 import me.diax.comportment.jdacommand.Command
-import me.diax.comportment.jdacommand.CommandAttribute
 import me.diax.comportment.jdacommand.CommandDescription
 import net.dv8tion.jda.core.entities.Message
 
@@ -29,9 +28,7 @@ import net.dv8tion.jda.core.entities.Message
  *
  * @author Comportment
  */
-@CommandDescription(name = "current", triggers = arrayOf("playing", "current"), attributes = arrayOf(
-        CommandAttribute(key = "description", value = "Shows the track card for the currently playing song.")
-))
+@CommandDescription(name = "current", triggers = arrayOf("playing", "current"), description = "Shows the track card for the currently playing song.")
 class Current : Command {
 
     override fun execute(message: Message, string: String) {

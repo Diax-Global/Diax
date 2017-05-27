@@ -19,7 +19,6 @@ package me.diax.comportment.diax.commands.musical
 import me.diax.comportment.diax.audio.GuildMusicManager
 import me.diax.comportment.diax.util.MessageUtil
 import me.diax.comportment.jdacommand.Command
-import me.diax.comportment.jdacommand.CommandAttribute
 import me.diax.comportment.jdacommand.CommandDescription
 import net.dv8tion.jda.core.entities.Message
 
@@ -30,9 +29,7 @@ import net.dv8tion.jda.core.entities.Message
  *
  * @author Comportment
  */
-@CommandDescription(name = "stop", triggers = arrayOf("stop"), attributes = arrayOf(
-        CommandAttribute(key = "description", value = "Stops the currently playing song and clears the queue.")
-))
+@CommandDescription(name = "stop", triggers = arrayOf("stop"), description = "Stops the currently playing song and clears the queue.")
 class Stop : Command {
 
     override fun execute(message: Message, string: String) {

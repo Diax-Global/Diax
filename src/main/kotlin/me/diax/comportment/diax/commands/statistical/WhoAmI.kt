@@ -17,6 +17,7 @@
 package me.diax.comportment.diax.commands.statistical
 
 import me.diax.comportment.diax.util.MessageUtil
+import me.diax.comportment.diax.util.Util
 import me.diax.comportment.jdacommand.Command
 import me.diax.comportment.jdacommand.CommandAttribute
 import me.diax.comportment.jdacommand.CommandDescription
@@ -30,13 +31,25 @@ import java.time.format.DateTimeFormatter
  * @author Comportment
  */
 @CommandDescription(name = "whoami", triggers = arrayOf("whoami"), attributes = arrayOf(
-        CommandAttribute(key = "allowPrivate"),
-        CommandAttribute(key = "description", value = "Tells you who you are.")
-))
+        CommandAttribute(key = "allowPrivate")
+), description = "Tells you a bit about yourself.")
 class WhoAmI : Command {
 
     override fun execute(trigger: Message, args: String) {
         val user = trigger.author
-        trigger.channel.sendMessage(MessageUtil.defaultEmbed().setThumbnail(user.effectiveAvatarUrl).addField("***${user.name+"#"+user.discriminator}***", arrayOf("", "__**Unique ID:**__", user.id, "", "__**Discord Join Date:**__", DateTimeFormatter.RFC_1123_DATE_TIME.format(user.creationTime), "", "__**Avatar URL:**__", user.effectiveAvatarUrl, "", "").joinToString("\n"), false).build()).queue()
+        trigger.channel.sendMessage(MessageUtil.defaultEmbed().setThumbnail(user.effectiveAvatarUrl).addField("***${user.name+"#"+user.discriminator}***", arrayOf(
+                "",
+                "__**Unique ID:**__",
+                user.id,
+                "",
+                "__**Discord Join Date:**__",
+                DateTimeFormatter.RFC_1123_DATE_TIME.format(user.creationTime),
+                "",
+                "__**Avatar URL:**__",
+                user.effectiveAvatarUrl,
+                "",
+                "__**Score:**__",
+                Util.getScore(user)
+        ).joinToString("\n"), false).build()).queue()
     }
 }

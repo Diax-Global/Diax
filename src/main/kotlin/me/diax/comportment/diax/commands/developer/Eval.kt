@@ -38,7 +38,7 @@ import java.util.concurrent.Executors
         CommandAttribute(key = "developerOnly"),
         CommandAttribute(key = "allowPrivate"),
         CommandAttribute(key = "hideFromHelp")
-))
+), description = "Evals the given args.")
 class Eval : Command {
 
     private val EVALS = ThreadGroup("Eval Thread Pool")

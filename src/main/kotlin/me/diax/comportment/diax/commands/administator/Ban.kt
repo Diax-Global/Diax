@@ -19,6 +19,8 @@ package me.diax.comportment.diax.commands.administator
 import me.diax.comportment.diax.util.MessageUtil
 import me.diax.comportment.diax.util.Util
 import me.diax.comportment.jdacommand.CommandDescription
+import net.dv8tion.jda.core.Permission
+import net.dv8tion.jda.core.entities.Message
 
 /**
  * Created by Comportment at 00:51 on 16/05/17
@@ -26,13 +28,11 @@ import me.diax.comportment.jdacommand.CommandDescription
 
  * @author Comportment
  */
-@CommandDescription(name = "ban", triggers = arrayOf("ban", "banne", "hammer"), attributes = arrayOf(
-        me.diax.comportment.jdacommand.CommandAttribute(key = "description", value = "Bans a user if you have permission.")
-), args = 1)
+@CommandDescription(name = "ban", triggers = arrayOf("ban", "banne", "hammer"), description = "Bans the mentioned users.", args = 1)
 class Ban : me.diax.comportment.jdacommand.Command {
 
-    override fun execute(message: net.dv8tion.jda.core.entities.Message, s: String) {
-        if (!Util.checkPermission(message.guild, message.author, net.dv8tion.jda.core.Permission.BAN_MEMBERS)) {
+    override fun execute(message: Message, s: String) {
+        if (!Util.checkPermission(message.guild, message.author, Permission.BAN_MEMBERS)) {
             message.channel.sendMessage(MessageUtil.permissionError()).queue()
             return
         }

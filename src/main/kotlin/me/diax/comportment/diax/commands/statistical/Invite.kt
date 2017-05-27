@@ -29,9 +29,8 @@ import net.dv8tion.jda.core.entities.Message
  * @author Comportment
  */
 @CommandDescription(name = "invite", triggers = arrayOf("invite", "guild", "server"), attributes = arrayOf(
-        CommandAttribute(key = "description", value = "Invites you to Diax's server."),
         CommandAttribute(key = "allowPrivate")
-))
+), description = "Gives you Diax's invite links.")
 class Invite : Command {
 
     override fun execute(message: Message, args: String) {

@@ -19,7 +19,6 @@ package me.diax.comportment.diax.commands.administator
 import me.diax.comportment.diax.util.MessageUtil
 import me.diax.comportment.diax.util.Util
 import me.diax.comportment.jdacommand.Command
-import me.diax.comportment.jdacommand.CommandAttribute
 import me.diax.comportment.jdacommand.CommandDescription
 import net.dv8tion.jda.core.Permission
 import net.dv8tion.jda.core.entities.Message
@@ -31,9 +30,7 @@ import net.dv8tion.jda.core.exceptions.PermissionException
  *
  * @author Comportment
  */
-@CommandDescription(name = "softban", triggers = arrayOf("softban", "softbanne"), attributes = arrayOf(
-        CommandAttribute(key = "description", value = "Softbans the mentioned members from a guild.")
-), args = 1)
+@CommandDescription(name = "softban", triggers = arrayOf("softban", "softbanne"), description = "Softbans the mentioned members from a guild.", args = 1)
 class SoftBan : Command {
 
     override fun execute(message: Message, args: String) {

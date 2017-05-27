@@ -19,7 +19,6 @@ package me.diax.comportment.diax.commands.administator
 import me.diax.comportment.diax.util.MessageUtil
 import me.diax.comportment.diax.util.Util
 import me.diax.comportment.jdacommand.Command
-import me.diax.comportment.jdacommand.CommandAttribute
 import me.diax.comportment.jdacommand.CommandDescription
 import net.dv8tion.jda.core.Permission
 import net.dv8tion.jda.core.entities.Message
@@ -31,9 +30,7 @@ import net.dv8tion.jda.core.exceptions.PermissionException
  *
  * @author Comportment
  */
-@CommandDescription(name = "unban", triggers = arrayOf("unban", "pardon"), attributes = arrayOf(
-        CommandAttribute(key = "description", value = "Unbans the mentioned banned users.")
-), args = 1)
+@CommandDescription(name = "unban", triggers = arrayOf("unban", "pardon"), description = "Unbans the mentioned banned users.", args = 1)
 class Unban : Command {
 
     override fun execute(message: Message, args: String) {

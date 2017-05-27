@@ -24,7 +24,6 @@ import me.diax.comportment.diax.audio.GuildMusicManager
 import me.diax.comportment.diax.audio.MusicTrack
 import me.diax.comportment.diax.util.MessageUtil
 import me.diax.comportment.jdacommand.Command
-import me.diax.comportment.jdacommand.CommandAttribute
 import me.diax.comportment.jdacommand.CommandDescription
 import net.dv8tion.jda.core.entities.Message
 
@@ -34,9 +33,8 @@ import net.dv8tion.jda.core.entities.Message
  *
  * @author Comportment
  */
-@CommandDescription(name = "play", triggers = arrayOf("play"), attributes = arrayOf(
-        CommandAttribute(key = "description", value = "Attempts to play the given track.")
-))
+@CommandDescription(name = "play", triggers = arrayOf("play"), description = "Attempts to play the given track.")
+
 class Play : Command {
 
     override fun execute(message: Message, args: String) {

@@ -19,7 +19,6 @@ package me.diax.comportment.diax.commands.administator
 import me.diax.comportment.diax.util.MessageUtil
 import me.diax.comportment.diax.util.Util
 import me.diax.comportment.jdacommand.Command
-import me.diax.comportment.jdacommand.CommandAttribute
 import me.diax.comportment.jdacommand.CommandDescription
 import net.dv8tion.jda.core.Permission
 import net.dv8tion.jda.core.entities.Message
@@ -32,9 +31,7 @@ import java.util.concurrent.TimeUnit
  *
  * @author Comportment
  */
-@CommandDescription(name = "purge", triggers = arrayOf("purge", "clear", "clean"), attributes = arrayOf(
-        CommandAttribute(key = "description", value = "Purges up to 100 messages at a time from the chat.")
-), args = 1)
+@CommandDescription(name = "purge", triggers = arrayOf("purge", "clear", "clean"), description = "Purges up to 100 messages at a time from the chat.", args = 1)
 class Purge : Command {
 
     override fun execute(message: Message, string: String) {

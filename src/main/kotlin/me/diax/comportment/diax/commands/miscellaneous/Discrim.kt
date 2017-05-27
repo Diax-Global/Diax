@@ -30,9 +30,8 @@ import net.dv8tion.jda.core.entities.Message
  * @author Comportment
  */
 @CommandDescription(name = "discrim", triggers = arrayOf("discrim", "discriminator", "farm"), attributes = arrayOf(
-        CommandAttribute(key = "description", value = "Gives you a list of all the users with the given discriminator."),
         CommandAttribute(key = "allowPrivate")
-), args = 1)
+), description = "Gives you a list of the first 10 users found with the discriminator given.", args = 1)
 class Discrim : Command {
 
     override fun execute(message: Message, args: String) {

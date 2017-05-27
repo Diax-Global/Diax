@@ -30,7 +30,7 @@ import net.dv8tion.jda.core.entities.Message
 @CommandDescription(name = "crystal", triggers = arrayOf("crystal", "wat"), attributes = arrayOf(
         CommandAttribute(key = "hideFromHelp"),
         CommandAttribute(key = "allowPrivate")
-))
+), description = "wat")
 class Crystal : Command {
 
     override fun execute(message: Message, string: String) {

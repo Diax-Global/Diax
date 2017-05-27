@@ -33,9 +33,8 @@ import net.dv8tion.jda.core.entities.Message
  * @author Comportment
  */
 @CommandDescription(name = "stats", triggers = arrayOf("statistics", "stats"), attributes = arrayOf(
-        CommandAttribute(key = "description", value = "The description of the command to show in help"),
         CommandAttribute(key = "allowPrivate")
-))
+), description = "Gives you Diax's statistics!")
 class Statistics : Command {
 
     override fun execute(trigger: Message, args: String) {
@@ -66,9 +65,7 @@ class Statistics : Command {
                 "Java: ${System.getProperty("java.version")}",
                 "Kotlin: ${KotlinVersion.CURRENT}",
                 "",
-                "__**Developers**__",
-                "Comportment#9489: JDA-Command library dev, lead bot developer.",
-                "NachtRaben#8307: Diax-Brazen dev, music logic foundations."
+                "Use `<>credits` to see all the people who deserve credit for making Diax possible."
         ).joinToString("\n"))).queue()
     }
 }

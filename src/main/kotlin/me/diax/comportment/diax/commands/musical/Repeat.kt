@@ -19,7 +19,6 @@ package me.diax.comportment.diax.commands.musical
 import me.diax.comportment.diax.audio.GuildMusicManager
 import me.diax.comportment.diax.util.MessageUtil
 import me.diax.comportment.jdacommand.Command
-import me.diax.comportment.jdacommand.CommandAttribute
 import me.diax.comportment.jdacommand.CommandDescription
 import net.dv8tion.jda.core.entities.Message
 
@@ -29,15 +28,12 @@ import net.dv8tion.jda.core.entities.Message
  *
  * @author Comportment
  */
-@CommandDescription(name = "repeat", triggers = arrayOf("repeat"), attributes = arrayOf(
-        CommandAttribute(key = "description", value = "Toggles if the current track repeats.")
-))
+@CommandDescription(name = "repeat", triggers = arrayOf("repeat"), description = "Toggles if the current track repeats.")
 class Repeat : Command {
 
     override fun execute(message: Message, string: String) {
         val manager = GuildMusicManager.getManagerFor(message.guild)
         manager.scheduler.isRepeating = !manager.scheduler.isRepeating
         message.channel.sendMessage(MessageUtil.basicEmbed(String.format("The track is %s repeating.", if (manager.scheduler.isRepeating) "now" else "no longer"))).queue()
-
     }
 }

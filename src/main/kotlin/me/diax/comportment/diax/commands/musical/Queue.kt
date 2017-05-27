@@ -20,7 +20,6 @@ import me.diax.comportment.diax.audio.GuildMusicManager
 import me.diax.comportment.diax.util.MessageUtil
 import me.diax.comportment.diax.util.Util
 import me.diax.comportment.jdacommand.Command
-import me.diax.comportment.jdacommand.CommandAttribute
 import me.diax.comportment.jdacommand.CommandDescription
 import net.dv8tion.jda.core.entities.Message
 
@@ -30,9 +29,7 @@ import net.dv8tion.jda.core.entities.Message
  *
  * @author Comportment
  */
-@CommandDescription(name = "queue", triggers = arrayOf("queue"), attributes = arrayOf(
-        CommandAttribute(key = "description", value = "Gives you the queue.")
-))
+@CommandDescription(name = "queue", triggers = arrayOf("queue"), description = "Gives you the queue.")
 class Queue : Command {
 
     override fun execute(message: Message, args: String) {

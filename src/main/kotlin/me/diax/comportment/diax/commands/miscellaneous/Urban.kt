@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.diax.comportment.diax.commands.statistical
+package me.diax.comportment.diax.commands.miscellaneous
 
 import com.mashape.unirest.http.Unirest
 import me.diax.comportment.diax.util.MessageUtil
@@ -30,9 +30,8 @@ import net.dv8tion.jda.core.entities.Message
  * @author Comportment
  */
 @CommandDescription(name = "urban", triggers = arrayOf("urban"), attributes = arrayOf(
-        CommandAttribute(key = "description", value = "Searches a command on urban dictionary."),
         CommandAttribute(key = "allowPrivate")
-), args = 1)
+), description = "Searches the given args on urban dictionary.", args = 1)
 class Urban : Command {
 
     override fun execute(message: Message, args: String) {

@@ -24,10 +24,7 @@ import com.knockturnmc.api.util.ConfigurationUtils;
 import com.mashape.unirest.http.Unirest;
 import me.diax.comportment.diax.commands.administator.*;
 import me.diax.comportment.diax.commands.developer.Eval;
-import me.diax.comportment.diax.commands.miscellaneous.Crystal;
-import me.diax.comportment.diax.commands.miscellaneous.Discrim;
-import me.diax.comportment.diax.commands.miscellaneous.Echo;
-import me.diax.comportment.diax.commands.miscellaneous.Embed;
+import me.diax.comportment.diax.commands.miscellaneous.*;
 import me.diax.comportment.diax.commands.musical.*;
 import me.diax.comportment.diax.commands.random.*;
 import me.diax.comportment.diax.commands.statistical.*;
@@ -107,7 +104,7 @@ public class Main implements ComponentProvider, Module {
     }
 
     public static void main(String[] args) {
-        new Main().main();
+       new Main().main();
     }
 
     private void main() {

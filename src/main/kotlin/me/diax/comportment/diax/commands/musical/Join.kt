@@ -18,7 +18,6 @@ package me.diax.comportment.diax.commands.musical
 
 import me.diax.comportment.diax.util.MessageUtil
 import me.diax.comportment.jdacommand.Command
-import me.diax.comportment.jdacommand.CommandAttribute
 import me.diax.comportment.jdacommand.CommandDescription
 import net.dv8tion.jda.core.entities.Message
 import net.dv8tion.jda.core.exceptions.PermissionException
@@ -29,9 +28,7 @@ import net.dv8tion.jda.core.exceptions.PermissionException
  *
  * @author Comportment
  */
-@CommandDescription(name = "join", triggers = arrayOf("join"), attributes = arrayOf(
-        CommandAttribute(key = "description", value = "Makes Diax attempt to join your voice channel.")
-))
+@CommandDescription(name = "join", triggers = arrayOf("join"), description = "Makes Diax attempt to join your voice channel.")
 class Join : Command {
 
     override fun execute(message: Message, string: String) {
