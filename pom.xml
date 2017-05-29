@@ -82,6 +82,14 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <relocations>
+                        <relocation>
+                            <pattern>org.apache.commons.lang</pattern>
+                            <shadedPattern>org.shaded.commons.lang</shadedPattern>
+                        </relocation>
+                    </relocations>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -129,6 +137,7 @@
                                 <source>src/test/resources</source>
                             </sourceDirs>
                         </configuration>
+
                     </execution>
                 </executions>
             </plugin>
