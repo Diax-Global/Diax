@@ -35,7 +35,6 @@ import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.OnlineStatus;
 import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.entities.TextChannel;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.util.Arrays;
@@ -46,7 +45,7 @@ import java.util.Arrays;
  *
  * @author Comportment
  */
-public class Main extends JavaPlugin implements ComponentProvider, Module {
+public class Main implements ComponentProvider, Module {
 
     private static JDA[] shards;
     private DiaxProperties properties;
@@ -106,16 +105,6 @@ public class Main extends JavaPlugin implements ComponentProvider, Module {
                 new Statistics(),
                 new WhoAmI()
         );
-    }
-
-    @Override
-    public void onEnable() {
-        main();
-    }
-
-    @Override
-    public void onDisable() {
-        Arrays.stream(shards).forEach(JDA::shutdown);
     }
 
     public static void main(String[] args) {

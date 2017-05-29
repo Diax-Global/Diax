@@ -1,7 +1,0 @@
-name: Diax
-version: 1.7.0
-main: me.diax.comportment.diax.Main
-prefix: Diax
-authors: [Comportment]
-description: Diaxx
-website: github.com/comportment/Diax
