@@ -34,6 +34,6 @@ import net.dv8tion.jda.core.entities.Message
 class F : Command {
 
     override fun execute(message: Message, args: String) {
-        message.channel.sendMessage("${message.author.name} has paId reSPeckts").queue()
+        message.channel.sendMessage("${message.author.name} has paid respects.").queue()
     }
 }
