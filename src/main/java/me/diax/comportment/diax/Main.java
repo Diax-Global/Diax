@@ -53,7 +53,7 @@ public class Main extends JavaPlugin implements ComponentProvider, Module {
     private Injector injector;
     private CommandHandler handler;
 
-    private Main() {
+    public Main() {
         handler = new CommandHandler();
         properties = ConfigurationUtils.loadConfiguration(this.getClass().getClassLoader(), "diax.properties", new File(System.getProperty("user.dir")), DiaxProperties.class);
         injector = Guice.createInjector(this);
