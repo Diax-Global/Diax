@@ -1,0 +1,7 @@
+name: Diax
+version: 1.0.6
+main: me.diax.comportment.diax.Main
+prefix: Diax
+authors: [Comportment]
+description: Its Diax, k?
+website: github.com/comportment/Diax

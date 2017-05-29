@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.diax.comportment.diax.commands.statistical
+package me.diax.comportment.diax.commands.miscellaneous
 
 import me.diax.comportment.jdacommand.Command
 import me.diax.comportment.jdacommand.CommandAttribute
@@ -27,7 +27,7 @@ import net.dv8tion.jda.core.entities.Message
  *
  * @author Comportment
  */
-@CommandDescription(name = "donate", triggers = arrayOf("patreon", "paypal"), attributes = arrayOf(
+@CommandDescription(name = "donate", triggers = arrayOf("donate", "patreon", "paypal"), attributes = arrayOf(
         CommandAttribute(key = "allowPrivate")
 ), description = "Gives you Diax's donation links.")
 class Donate : Command {

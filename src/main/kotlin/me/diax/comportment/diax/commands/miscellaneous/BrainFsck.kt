@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.diax.comportment.diax.commands.developer
+package me.diax.comportment.diax.commands.miscellaneous
 
 import me.diax.comportment.brainjack.BrainJack
 import me.diax.comportment.jdacommand.Command

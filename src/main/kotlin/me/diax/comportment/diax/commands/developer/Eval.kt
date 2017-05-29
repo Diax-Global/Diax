@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.diax.comportment.diax.commands.miscellaneous
+package me.diax.comportment.diax.commands.developer
 
 import groovy.lang.Binding
 import groovy.lang.GroovyShell
