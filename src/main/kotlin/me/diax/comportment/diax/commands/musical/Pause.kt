@@ -14,30 +14,26 @@
  * limitations under the License.
  */
 
-package me.diax.comportment.diax.commands.miscellaneous
+package me.diax.comportment.diax.commands.musical
 
+import me.diax.comportment.diax.audio.GuildMusicManager
+import me.diax.comportment.diax.util.MessageUtil
 import me.diax.comportment.jdacommand.Command
-import me.diax.comportment.jdacommand.CommandAttribute
 import me.diax.comportment.jdacommand.CommandDescription
 import net.dv8tion.jda.core.entities.Message
-import net.dv8tion.jda.core.exceptions.PermissionException
 
 /**
- * Created by Comportment at 20:45 on 15/05/17
+ * Created by Comportment at 12:30 on 02/06/17
  * https://github.com/Comportment | comportment@diax.me
-
+ *
  * @author Comportment
  */
-@CommandDescription(name = "echo", triggers = arrayOf("echo", "repeat", "say"), attributes = arrayOf(
-        CommandAttribute(key = "allowPrivate")
-), description = "Sends a plaintext message to the channel containing the arguments.", args = 1)
-class Echo : Command {
+@CommandDescription(name = "pause", triggers = arrayOf("pause"), description = "Pauses current player.")
+class Pause : Command {
 
-    override fun execute(trigger: Message, args: String) {
-        try {
-            trigger.delete().queue()
-        } catch (ignored: PermissionException) {
-        }
-        trigger.channel.sendMessage(args).queue()
+    override fun execute(message: Message, string: String) {
+        val manager = GuildMusicManager.getManagerFor(message.guild)
+        manager.player.isPaused = !manager.player.isPaused
+        message.channel.sendMessage(MessageUtil.basicEmbed(String.format("The player is %s paused.", if (manager.player.isPaused) "now" else "no longer"))).queue()
     }
 }

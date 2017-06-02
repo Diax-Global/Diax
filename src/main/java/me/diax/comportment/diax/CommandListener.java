@@ -20,12 +20,14 @@ import me.diax.comportment.diax.util.MessageUtil;
 import me.diax.comportment.diax.util.Util;
 import me.diax.comportment.jdacommand.Command;
 import me.diax.comportment.jdacommand.CommandHandler;
+import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import net.dv8tion.jda.core.utils.SimpleLog;
 
 import javax.inject.Inject;
+import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.regex.Pattern;
@@ -40,7 +42,7 @@ public class CommandListener extends ListenerAdapter {
 
     private final CommandHandler handler;
     private static final ThreadGroup threadGroup = new ThreadGroup("Command Executor");
-    private static final ExecutorService commandsExecutor = Executors.newCachedThreadPool(r -> new Thread(threadGroup, r, "Command Pool"));
+    private static final ExecutorService commandsExecutor = Executors.newCachedThreadPool(r -> new Thread(threadGroup, r, "JDA-Command Pool"));
 
     private final String prefix;
     private final SimpleLog logger = SimpleLog.getLog("Command-Listener");
@@ -71,7 +73,6 @@ public class CommandListener extends ListenerAdapter {
                 return;
             }
             handler.execute(command, event.getMessage(), truncated.replaceFirst(Pattern.quote(first), ""));
-
         });
     }
 
@@ -92,10 +93,19 @@ public class CommandListener extends ListenerAdapter {
             if (command.hasAttribute("developerOnly") && !Util.isDeveloper(event.getAuthor().getIdLong())) {
                 return;
             }
-            handler.execute(
-                    command,
-                    event.getMessage(),
-                    truncated.replaceFirst(Pattern.quote(first), ""));
+            try {
+                handler.execute(
+                        command,
+                        event.getMessage(),
+                        truncated.replaceFirst(Pattern.quote(first), "")
+                );
+            } catch (Exception e) {
+                String errMessage = "An error occurred: " + Util.paste(e.getMessage());
+                event.getChannel().sendMessage(errMessage).queue();
+                e.printStackTrace();
+                Guild g = Arrays.stream(Main.getShards()).flatMap(jda -> jda.getGuilds().stream()).filter(guild -> guild.getId().equals("302937744831938560")).findAny().orElse(null);
+                g.getTextChannelById("314220532818247681").sendMessage(errMessage).queue();
+            }
         });
     }
 }

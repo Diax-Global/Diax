@@ -28,7 +28,7 @@ import net.dv8tion.jda.core.entities.Message
  *
  * @author Comportment
  */
-@CommandDescription(name = "repeat", triggers = arrayOf("repeat"), description = "Toggles if the current track repeats.")
+@CommandDescription(name = "repeat", triggers = arrayOf("repeat", "pause"), description = "Toggles if the current track repeats.")
 class Repeat : Command {
 
     override fun execute(message: Message, string: String) {

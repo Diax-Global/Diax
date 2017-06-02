@@ -79,6 +79,7 @@ public class Main implements ComponentProvider, Module {
                 //Music
                 new Current(),
                 new Join(),
+                new Pause(),
                 new Play(),
                 new Queue(),
                 new Repeat(),
