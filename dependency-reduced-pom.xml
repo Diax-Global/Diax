@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>me.diax</groupId>
-  <artifactId>Diax-Bot</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <artifactId>Diax</artifactId>
+  <version>2.0.0</version>
   <build>
     <resources>
       <resource>
@@ -87,7 +87,7 @@
       <plugin>
         <groupId>org.jetbrains.kotlin</groupId>
         <artifactId>kotlin-maven-plugin</artifactId>
-        <version>${kotlin.version}</version>
+        <version>1.1.2-3</version>
         <executions>
           <execution>
             <id>compile</id>
@@ -128,49 +128,11 @@
       <url>http://jcenter.bintray.com</url>
     </repository>
     <repository>
-      <id>knockturn</id>
-      <name>Knockturn Public</name>
-      <url>https://repo.knockturnmc.com/content/repositories/knockturn-public/</url>
-    </repository>
-    <repository>
-      <id>spigotmc-repo</id>
-      <name>spigot</name>
-      <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
-    </repository>
-    <repository>
       <id>jitpack.io</id>
       <url>https://jitpack.io</url>
     </repository>
   </repositories>
   <dependencies>
-    <dependency>
-      <groupId>org.bukkit</groupId>
-      <artifactId>bukkit</artifactId>
-      <version>1.11.2-R0.1-SNAPSHOT</version>
-      <scope>provided</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>commons-lang</artifactId>
-          <groupId>commons-lang</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>json-simple</artifactId>
-          <groupId>com.googlecode.json-simple</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>gson</artifactId>
-          <groupId>com.google.code.gson</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>ebean</artifactId>
-          <groupId>org.avaje</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>snakeyaml</artifactId>
-          <groupId>org.yaml</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-test</artifactId>
@@ -178,8 +140,5 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <properties>
-    <kotlin.version>1.1.2-3</kotlin.version>
-  </properties>
 </project>
 
