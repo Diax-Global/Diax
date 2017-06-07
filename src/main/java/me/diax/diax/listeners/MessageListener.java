@@ -31,19 +31,20 @@ public class MessageListener extends ListenerAdapter {
             prefix = Util.PREFIX;
         } else if (content.startsWith(event.getJDA().getSelfUser().getAsMention())) {
             prefix = event.getJDA().getSelfUser().getAsMention();
-        } /* else if get prefix from database */
+        } //TODO: Get prefix from database.
         if (prefix == null && event.getChannelType().isGuild()) return; //The message must have a prefix in a non private channel.
         prefix = "";
         content = content.replaceFirst(Pattern.quote(prefix), "").trim();
         Command command = handler.findCommand(content.split(" ")[0]);
         if (command == null) {
             return; //The command does not exist/is not registered
+            //TODO: Custom command support.
         }
         if (!command.hasAttribute("allowPrivate") && !event.getChannelType().isGuild()) {
             return; //The command can not be used in private messages.
         }
         if (command.hasAttribute("developerOnly") && !event.getAuthor().getId().equals("293884638101897216")) {
-            return; //The user is not comp
+            return; //The user is not Comportment
         }
         handler.execute(command, event.getMessage(), content);
     }
