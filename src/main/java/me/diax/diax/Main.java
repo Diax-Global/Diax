@@ -4,6 +4,8 @@ import com.google.inject.Binder;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
+import me.diax.comportment.jdacommand.CommandHandler;
+import me.diax.diax.listeners.MessageListener;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -21,8 +23,11 @@ public class Main implements ComponentProvider, Module {
 
     private Injector injector;
     private String token = Util.TOKEN;
+    private CommandHandler handler;
 
     private Main() {
+        handler = new CommandHandler();
+        handler.registerCommands();
         injector = Guice.createInjector(this);
     }
 
@@ -49,7 +54,8 @@ public class Main implements ComponentProvider, Module {
             JDABuilder builder = new JDABuilder(AccountType.BOT)
                     .setToken(token)
                     .setAudioEnabled(true)
-                    .setGame(Game.of("owo what's this", "https://twitch.tv/comportment"));
+                    .setGame(Game.of("owo what's this", "https://twitch.tv/comportment"))
+                    .addEventListener(this.getInstance(MessageListener.class));
             if (shards.length >= 3) {
                 builder = builder.useSharding(i, shards.length);
             }
@@ -81,5 +87,6 @@ public class Main implements ComponentProvider, Module {
     @Override
     public void configure(Binder binder) {
         binder.bind(ComponentProvider.class).toInstance(this);
+        binder.bind(CommandHandler.class).toInstance(handler);
     }
 }

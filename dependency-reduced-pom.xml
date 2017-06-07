@@ -16,44 +16,6 @@
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.5.1</version>
-        <executions>
-          <execution>
-            <id>default-compile</id>
-            <phase>none</phase>
-          </execution>
-          <execution>
-            <id>default-testCompile</id>
-            <phase>none</phase>
-          </execution>
-          <execution>
-            <id>java-compile</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>compile</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>java-test-compile</id>
-            <phase>test-compile</phase>
-            <goals>
-              <goal>testCompile</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>compile</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>compile</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>testCompile</id>
-            <phase>test-compile</phase>
-            <goals>
-              <goal>testCompile</goal>
-            </goals>
-          </execution>
-        </executions>
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
@@ -84,41 +46,6 @@
           </archive>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.jetbrains.kotlin</groupId>
-        <artifactId>kotlin-maven-plugin</artifactId>
-        <version>1.1.2-3</version>
-        <executions>
-          <execution>
-            <id>compile</id>
-            <phase>process-sources</phase>
-            <goals>
-              <goal>compile</goal>
-            </goals>
-            <configuration>
-              <sourceDirs>
-                <source>src/main/java</source>
-                <source>src/main/kotlin</source>
-                <source>src/main/resources</source>
-              </sourceDirs>
-            </configuration>
-          </execution>
-          <execution>
-            <id>test-compile</id>
-            <phase>process-test-sources</phase>
-            <goals>
-              <goal>test-compile</goal>
-            </goals>
-            <configuration>
-              <sourceDirs>
-                <source>src/test/java</source>
-                <source>src/test/kotlin</source>
-                <source>src/test/resources</source>
-              </sourceDirs>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
     </plugins>
   </build>
   <repositories>
@@ -132,13 +59,5 @@
       <url>https://jitpack.io</url>
     </repository>
   </repositories>
-  <dependencies>
-    <dependency>
-      <groupId>org.jetbrains.kotlin</groupId>
-      <artifactId>kotlin-test</artifactId>
-      <version>1.1.2-3</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
 </project>
 
