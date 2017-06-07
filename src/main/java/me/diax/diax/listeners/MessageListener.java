@@ -2,7 +2,6 @@ package me.diax.diax.listeners;
 
 import me.diax.comportment.jdacommand.Command;
 import me.diax.comportment.jdacommand.CommandHandler;
-import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
@@ -10,8 +9,9 @@ import javax.inject.Inject;
 import java.util.regex.Pattern;
 
 /**
- * Created by Comportment on 07/06/2017 at 20:33
- * If you don't understand this, we are screwed.
+ *
+ * @author Comportment
+ * @version 2.0.0
  */
 public class MessageListener extends ListenerAdapter {
 
