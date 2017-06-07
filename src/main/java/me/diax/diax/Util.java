@@ -3,6 +3,7 @@ package me.diax.diax;
 import com.mashape.unirest.http.Unirest;
 
 /**
+ *
  * @author Comportment
  * @since 2.0.0
  */

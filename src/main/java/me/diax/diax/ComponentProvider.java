@@ -1,6 +1,7 @@
 package me.diax.diax;
 
 /**
+ *
  * @author Comportment
  * @since 2.0.0
  */
