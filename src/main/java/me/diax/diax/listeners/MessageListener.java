@@ -32,14 +32,14 @@ public class MessageListener extends ListenerAdapter {
         } else if (content.startsWith(event.getJDA().getSelfUser().getAsMention())) {
             prefix = event.getJDA().getSelfUser().getAsMention();
         } /* else if get prefix from database */
-        if (prefix == null && !event.getChannelType().equals(ChannelType.PRIVATE)) return; //The command doesn't need prefix in a private channel.
+        if (prefix == null && event.getChannelType().isGuild()) return; //The message must have a prefix in a non private channel.
         prefix = "";
         content = content.replaceFirst(Pattern.quote(prefix), "").trim();
         Command command = handler.findCommand(content.split(" ")[0]);
         if (command == null) {
             return; //The command does not exist/is not registered
         }
-        if (!command.hasAttribute("allowPrivate") && event.getChannelType().equals(ChannelType.PRIVATE)) {
+        if (!command.hasAttribute("allowPrivate") && !event.getChannelType().isGuild()) {
             return; //The command can not be used in private messages.
         }
         handler.execute(command, event.getMessage(), content);
