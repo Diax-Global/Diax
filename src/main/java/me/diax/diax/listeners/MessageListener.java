@@ -42,6 +42,9 @@ public class MessageListener extends ListenerAdapter {
         if (!command.hasAttribute("allowPrivate") && !event.getChannelType().isGuild()) {
             return; //The command can not be used in private messages.
         }
+        if (command.hasAttribute("developerOnly") && !event.getAuthor().getId().equals("293884638101897216")) {
+            return; //The user is not comp
+        }
         handler.execute(command, event.getMessage(), content);
     }
 }
