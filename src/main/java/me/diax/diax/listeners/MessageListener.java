@@ -26,12 +26,15 @@ public class MessageListener extends ListenerAdapter {
     public void onMessageReceived(MessageReceivedEvent event) {
         //Get prefix for guild.
         String content = event.getMessage().getRawContent();
-        if (!content.startsWith("<>")) {
-            if (!event.getChannelType().equals(ChannelType.PRIVATE)) {
-                return; //Don't need to use prefix in private messages
-            }
-        }
-        content = content.replaceFirst(Pattern.quote("<>"), "").trim();
+        String prefix = null;
+        if (content.startsWith("<>")) {
+            prefix = "<>";
+        } else if (content.startsWith(event.getJDA().getSelfUser().getAsMention())) {
+            prefix = event.getJDA().getSelfUser().getAsMention();
+        } /* else if get prefix from database */
+        if (prefix == null && !event.getChannelType().equals(ChannelType.PRIVATE)) return; //The command doesn't need prefix in a private channel.
+        prefix = "";
+        content = content.replaceFirst(Pattern.quote(prefix), "").trim();
         Command command = handler.findCommand(content.split(" ")[0]);
         if (command == null) {
             return; //The command does not exist/is not registered
