@@ -2,6 +2,7 @@ package me.diax.diax.listeners;
 
 import me.diax.comportment.jdacommand.Command;
 import me.diax.comportment.jdacommand.CommandHandler;
+import me.diax.diax.Util;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
@@ -24,11 +25,10 @@ public class MessageListener extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
-        //Get prefix for guild.
         String content = event.getMessage().getRawContent();
         String prefix = null;
-        if (content.startsWith("<>")) {
-            prefix = "<>";
+        if (content.startsWith(Util.PREFIX)) {
+            prefix = Util.PREFIX;
         } else if (content.startsWith(event.getJDA().getSelfUser().getAsMention())) {
             prefix = event.getJDA().getSelfUser().getAsMention();
         } /* else if get prefix from database */

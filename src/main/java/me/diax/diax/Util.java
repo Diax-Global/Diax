@@ -9,6 +9,9 @@ import com.mashape.unirest.http.Unirest;
  */
 public class Util {
 
+    public static String TOKEN = "token here";
+    public static String PREFIX = "<>";
+
     /**
      * @param token The token of the bot.
      * @return The amount of shards.
@@ -25,6 +28,4 @@ public class Util {
             return 1;
         }
     }
-
-    public static String TOKEN = "token here";
 }
